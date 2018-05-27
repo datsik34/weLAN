@@ -1,20 +1,33 @@
 import React from 'react';
 import {StyleSheet, Text, View, ImageBackground, Image, StatusBar, Platform} from 'react-native';
-
+import Video from 'react-native-video';
+import { Input, Button } from 'react-native-elements';
 
 import Login from '../components/home/login.js'
 import SignUp from '../components/home/signup.js'
 
-export default class Home extends React.Component {
+export default class HomeScreen extends React.Component {
   render() {
     return (
       <ImageBackground style={styles.container} source={require("../assets/images/resources/background.jpg")}>
+        <View style={styles.container}>
+          <Image  style={styles.logo} source={require('../assets/images/resources/logo.svg.png')}/>
 
-        <Image  style={styles.logo} source={require('../assets/images/resources/logo.svg.png')}/>
-        <Login/>
+
+          {/* <Login/> */}
+          <Button onPress={this._login} title='LOGIN'/>
+
+
+
+
+
+
+
+        </View>
       </ImageBackground>
     )
   }
+  _login = () => this.props.navigation.navigate('App');
 }
 
 const styles = StyleSheet.create({

@@ -1,11 +1,21 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Home from './screens/home.js';
+import {Provider} from 'react-redux';
+import {createStore, combineReducers}  from 'redux';
+
+import RootNavigation from './navigation/rootnavigation';
+
+// var globalReducers = combineReducers({});
+// const store = createStore(globalReducers);
+// enlever cette ligne du dessous et décommenter les lignes du dessus pour utiliser reducer
+const store = null;
 
 export default class App extends React.Component {
   render() {
     return (
-    <Home/>
+      <Provider store={store}>
+        <RootNavigation/>
+      </Provider>
     );
   }
 }
