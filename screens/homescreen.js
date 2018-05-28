@@ -10,20 +10,20 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
+
+  _login = () => this.props.navigation.navigate('App');
+
   render() {
     return (
       <ImageBackground style={styles.container} source={require("../assets/images/resources/background.jpg")}>
         <View style={styles.container}>
           <Image  style={styles.logo} source={require('../assets/images/resources/logo.svg.png')}/>
-
           {/* <Login/> */}
           <Button onPress={this._login} title='LOGIN'/>
-
         </View>
       </ImageBackground>
     )
   }
-  _login = () => this.props.navigation.navigate('App');
 }
 
 const styles = StyleSheet.create({

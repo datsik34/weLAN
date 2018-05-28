@@ -31,9 +31,9 @@ export default class ProfileScreen extends React.Component {
   };
 
 
-  logOut = () => this.props.navigation.navigate('Auth');
-  goToOrganize = () => this.props.navigation.navigate('Organize');
-  goToParticipate = () => this.props.navigation.navigate('Participate');
+  _logOut = () => this.props.navigation.navigate('Auth');
+  _goToOrganize = () => this.props.navigation.navigate('Organize');
+  _goToParticipate = () => this.props.navigation.navigate('Participate');
 
   render() {
     return (
@@ -42,9 +42,9 @@ export default class ProfileScreen extends React.Component {
           Profile Screen
         </Text>
 
-        <Button onPress={this.logOut} title='Log Out'/>
-        <Button onPress={this.goToOrganize} title='Organiser'/>
-        <Button onPress={this.goToParticipate} title='Participer'/>
+        <Button onPress={this._logOut} title='Log Out'/>
+        <Button onPress={this._goToOrganize} title='Organiser'/>
+        <Button onPress={this._goToParticipate} title='Participer'/>
       </View>
     );
   }
