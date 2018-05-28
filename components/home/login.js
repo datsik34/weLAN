@@ -11,11 +11,11 @@ export default class Login extends React.Component {
       <View style={styles.login}>
         <Input placeholder='BASIC INPUT'/>
         <Input placeholder='INPUT WITH ICON'/>
-        <Button onPress={this._login} title='LOGIN'/>
+        <Button onPress={this.props._login} title='LOGIN'/>
       </View>
     )
   }
-  _login = () => this.props.navigation.navigate('App');
+
 }
 
 
