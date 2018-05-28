@@ -12,9 +12,6 @@ const stylesHeader = StyleSheet.create({
 })
 
 export default class ProfileScreen extends React.Component {
-
-
-
   static navigationOptions = {
     title: 'Profil',
     headerLeft: (<Image source={require('../assets/images/resources/logo.svg.png')} style={stylesHeader.logo}/>),
@@ -27,9 +24,8 @@ export default class ProfileScreen extends React.Component {
       flex: 1,
       textAlign: 'center'
     },
-    headerRight: (<Button title='Log Out' onPress={this.logOut}/>)
+    headerRight: (<Button title='Log Out' onPress={this._logOut}/>)
   };
-
 
   _logOut = () => this.props.navigation.navigate('Auth');
   _goToOrganize = () => this.props.navigation.navigate('Organize');
@@ -38,23 +34,28 @@ export default class ProfileScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>
+        <Text style={{color: 'white'}}>
           Profile Screen
         </Text>
-
-        <Button onPress={this._logOut} title='Log Out'/>
-        <Button onPress={this._goToOrganize} title='Organiser'/>
-        <Button onPress={this._goToParticipate} title='Participer'/>
+        <View style={styles.buttonContainer}>
+          <Button onPress={this._logOut} title='Log Out'/>
+          <Button onPress={this._goToOrganize} title='Organiser'/>
+          <Button onPress={this._goToParticipate} title='Participer'/>
+        </View>
       </View>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#172432'
   },
+  buttonContainer: {
+    position: 'absolute',
+    bottom:0
+  }
 });

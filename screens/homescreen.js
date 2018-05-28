@@ -26,11 +26,10 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <ImageBackground style={styles.container} source={require("../assets/images/resources/background.jpg")}>
+      <ImageBackground style={styles.containerBackground} blurRadius={0.5} source={require("../assets/images/resources/background.jpg")}>
         <View style={styles.container}>
           <Image  style={styles.logo} source={require('../assets/images/resources/logo.svg.png')}/>
-          {/* <Login/> */}
-          <Button onPress={this._login} title='LOGIN'/>
+          <Login _login={this._login}/>
         </View>
       </ImageBackground>
     )
@@ -38,9 +37,12 @@ export default class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  containerBackground: {
+    flex: 1,
+    marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+  },
   container: {
     flex: 1,
-    marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
     alignItems: 'center',
     justifyContent: 'center',
   },
