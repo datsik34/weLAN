@@ -1,12 +1,11 @@
 import React from 'react';
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { Button } from 'react-native-elements';
+import { StyleSheet, Image } from 'react-native';
+import { Font } from 'expo';
 
 //import des screens
 import HomeScreen from '../screens/homescreen.js';
 import ProfileScreen from '../screens/profilescreen.js';
-// import OrganizeScreen from '../screens/organizescreen.js';
 import ParticipateScreen from '../screens/participatescreen.js';
 
 //import des composants afin de les stacker dans un navigateur
@@ -17,9 +16,20 @@ import PlaceComponent from '../components/organize/place';
 import OptionsComponent from '../components/organize/options';
 import SummaryComponent from '../components/organize/summary';
 
-//Arborescence Organize
-const OrganizeStack = createStackNavigator(
+//style du header de l'app
+const stylesHeader = StyleSheet.create({
+  logo: {
+    width: 55,
+    height: 55,
+    marginLeft: 5,
+    position: 'relative'
+  }
+})
+//Déclaration de l'arborescence des écrans de l'app. HomeScreen est indépendant
+const AppStack = createStackNavigator(
   {
+    Profile: ProfileScreen,
+    Participate: ParticipateScreen,
     Platforms: PlatformsComponent,
     Games: GamesComponent,
     Date: DateComponent,
@@ -28,23 +38,21 @@ const OrganizeStack = createStackNavigator(
     Summary: SummaryComponent
   },
   {
-    initialRouteName: 'Platforms',
-    navigationOptions: {
-      header: null
-    },
-  }
-);
+    initialRouteName: 'Profile',
 
-//Déclaration de l'arborescence des écrans de l'app. HomeScreen est indépendant
-const AppStack = createStackNavigator(
-  {
-    Profile: ProfileScreen,
-    Organize: OrganizeStack,
-    Participate: ParticipateScreen
-  },
-  {
+    //Customization du header de l'app
     navigationOptions: {
-      header: null
+      headerLeft: (<Image source={require('../assets/images/resources/logo.svg.png')} style={stylesHeader.logo}/>),
+      headerStyle: {
+        backgroundColor: '#25323f',
+        height: 64
+      },
+      headerTitleStyle: {
+        color: '#ffffff',
+        textAlign: 'center',
+        fontFamily: 'Montserrat-Bold',
+        fontWeight: 'normal'
+      }
     }
   }
 );
@@ -53,7 +61,7 @@ const AppStack = createStackNavigator(
 //Target initiale au lancement de l'app : Auth
 const AuthStack = createStackNavigator({Home: HomeScreen});
 
-
+// AppSwitch contient le Navigator Auth (home) et App (le reste de l'app). Le chemin par défaut est Auth
 const AppSwitch = createSwitchNavigator(
   {
     Auth: AuthStack,
@@ -64,7 +72,13 @@ const AppSwitch = createSwitchNavigator(
   }
 );
 
+//RootNavigation (qui est appelé dans App.js) renvoie AppSwitch, donc Auth qui est la route par défaut.
 export default class RootNavigation extends React.Component {
+  componentDidMount() {
+      Font.loadAsync({
+        'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
+      });
+  }
   render(){
     return (
     <AppSwitch/>

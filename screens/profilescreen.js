@@ -1,34 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { Button } from 'react-native-elements';
+import { StyleSheet, Text, View, Image, Platform, StatusBar } from 'react-native';
+import { Button, Header } from 'react-native-elements';
 
-const stylesHeader = StyleSheet.create({
-  logo: {
-    width: 55,
-    height: 55,
-    marginLeft: 5,
-    position: 'relative'
-  }
-})
 
 export default class ProfileScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Profil',
-    headerLeft: (<Image source={require('../assets/images/resources/logo.svg.png')} style={stylesHeader.logo}/>),
-    headerStyle: {
-      backgroundColor: '#24323E',
-      height: 64
-    },
-    headerTitleStyle: {
-      color: '#ffffff',
-      flex: 1,
-      textAlign: 'center'
-    },
-    headerRight: (<Button title='Log Out' onPress={this._logOut}/>)
-  };
+  static navigationOptions = ({ navigation }) => {
+      const params = navigation.state.params || {};
+      return {
+        headerTitle: 'Profil',
+        headerTitleStyle: {
+          flex: 1,
+          color: '#ffffff',
+          textAlign: 'center',
+          fontFamily: 'Montserrat-Bold',
+          fontWeight: 'normal'
+        },
+        headerRight: (
+          <Button titleStyle={styles.btnLogoutTitle} containerStyle={styles.btnLogoutCont} onPress={params.logout} clear={true} title="Log Out"/>
+        ),
+      };
+    };
+
+    componentWillMount() {
+      this.props.navigation.setParams({ logout: this._logOut });
+    }
 
   _logOut = () => this.props.navigation.navigate('Auth');
-  _goToOrganize = () => this.props.navigation.navigate('Organize');
+  _goToPlatforms = () => this.props.navigation.navigate('Platforms');
   _goToParticipate = () => this.props.navigation.navigate('Participate');
 
   render() {
@@ -38,9 +36,8 @@ export default class ProfileScreen extends React.Component {
           Profile Screen
         </Text>
         <View style={styles.buttonContainer}>
-          <Button onPress={this._logOut} title='Log Out'/>
-          <Button onPress={this._goToOrganize} title='Organiser'/>
-          <Button onPress={this._goToParticipate} title='Participer'/>
+          <Button buttonStyle={styles.btnColor} titleStyle={styles.btnTitle} onPress={this._goToPlatforms} title='ORGANISER'/>
+          <Button buttonStyle={styles.btnColor} titleStyle={styles.btnTitle} onPress={this._goToParticipate} title='PARTICIPER'/>
         </View>
       </View>
     );
@@ -52,10 +49,37 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#172432'
+    backgroundColor: '#172533',
   },
   buttonContainer: {
     position: 'absolute',
     bottom:0
+  },
+  header: {
+    top:0,
+    alignSelf: 'stretch',
+    backgroundColor: '#24323E',
+    height: 64,
+  },
+  btnLogoutTitle: {
+    color: '#e05504',
+    fontFamily: 'Montserrat-regular',
+    fontWeight: 'normal',
+    fontSize: 18
+  },
+  btnLogoutCont: {
+    marginRight: 18
+  },
+  btnTitle: {
+    color: 'black',
+    fontFamily: 'Montserrat-regular',
+    fontSize: 22,
+    fontWeight: 'bold'
+  },
+  btnColor: {
+    backgroundColor: '#00b14c',
+    width: 230,
+    marginBottom: 6
   }
+
 });
