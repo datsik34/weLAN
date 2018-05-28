@@ -4,6 +4,9 @@ import { Button, Header } from 'react-native-elements';
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 export default class GamesComponent extends React.Component {
+  static navigationOptions = {
+    title: '2/5 Choisis ton jeu'
+  };
 
   _goToDate = () => this.props.navigation.navigate('Date');
   _goBack = () => this.props.navigation.navigate('Platforms');

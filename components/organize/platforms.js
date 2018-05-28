@@ -8,7 +8,20 @@ import Ps4 from './platforms/ps4';
 import XboxOne from './platforms/xboxone';
 import NintendoSwitch from './platforms/nintendoswitch';
 
+const stylesHeader = StyleSheet.create({
+  logo: {
+    width: 55,
+    height: 55,
+    marginLeft: 5,
+    position: 'relative'
+  }
+})
+
 export default class PlatformsComponent extends React.Component {
+  static navigationOptions = {
+    title: '1/5 Choisis ta plateforme'
+  };
+
   _goToGames = () => this.props.navigation.navigate('Games');
   _goBack = () => this.props.navigation.navigate('Profile');
 

@@ -17,9 +17,20 @@ import PlaceComponent from '../components/organize/place';
 import OptionsComponent from '../components/organize/options';
 import SummaryComponent from '../components/organize/summary';
 
-//Arborescence Organize
-const OrganizeStack = createStackNavigator(
+const stylesHeader = StyleSheet.create({
+  logo: {
+    width: 55,
+    height: 55,
+    marginLeft: 5,
+    position: 'relative'
+  }
+})
+
+//Déclaration de l'arborescence des écrans de l'app. HomeScreen est indépendant
+const AppStack = createStackNavigator(
   {
+    Profile: ProfileScreen,
+    Participate: ParticipateScreen,
     Platforms: PlatformsComponent,
     Games: GamesComponent,
     Date: DateComponent,
@@ -28,23 +39,18 @@ const OrganizeStack = createStackNavigator(
     Summary: SummaryComponent
   },
   {
-    initialRouteName: 'Platforms',
+    initialRouteName: 'Profile',
     navigationOptions: {
-      header: null
-    },
-  }
-);
-
-//Déclaration de l'arborescence des écrans de l'app. HomeScreen est indépendant
-const AppStack = createStackNavigator(
-  {
-    Profile: ProfileScreen,
-    Organize: OrganizeStack,
-    Participate: ParticipateScreen
-  },
-  {
-    navigationOptions: {
-      header: null
+      headerLeft: (<Image source={require('../assets/images/resources/logo.svg.png')} style={stylesHeader.logo}/>),
+      headerStyle: {
+        backgroundColor: '#24323E',
+        height: 64
+      },
+      headerTitleStyle: {
+        color: '#ffffff',
+        flex: 1,
+        textAlign: 'center'
+      }
     }
   }
 );
