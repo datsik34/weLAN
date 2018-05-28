@@ -40,10 +40,8 @@ export default class PlatformsComponent extends React.Component {
             </Row>
           </Grid>
         </ScrollView>
-        <View style={styles.buttonBottom}>
-          <Button onPress={this._goToGames} title='Suivant'/>
-          <Button  onPress={this._goBack} title='retour'/>
-        </View>
+        <Button buttonStyle={styles.btnColorGreen} titleStyle={styles.btnTitle} onPress={this._goToGames} title='SUIVANT'/>
+        <Button buttonStyle={styles.btnColorGrey} titleStyle={styles.btnTitle} onPress={this._goBack} title='RETOUR'/>
       </View>
     )
   }
@@ -52,14 +50,7 @@ export default class PlatformsComponent extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#172432',
-  },
-  buttonBottom: {
-    position: 'absolute',
-    bottom:0
-  },
-  text: {
-    color: 'white'
+    backgroundColor: '#172533',
   },
   grid: {
     backgroundColor: 'red'
@@ -67,4 +58,16 @@ const styles = StyleSheet.create({
   rowgrid: {
     height: 200
   },
+  btnTitle: {
+    color: 'black',
+    fontFamily: 'Montserrat-regular',
+    fontSize: 22,
+    fontWeight: 'bold'
+  },
+  btnColorGreen: {
+    backgroundColor: '#00b14c'
+  },
+  btnColorGrey: {
+    backgroundColor: '#606060'
+  }
 })

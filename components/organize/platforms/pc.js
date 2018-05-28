@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontSize: 30,
-    fontWeight: 'bold'
+    fontFamily: 'Montserrat-Bold',
+    fontWeight: 'normal'
   }
 })

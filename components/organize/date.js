@@ -4,17 +4,18 @@ import { Button } from 'react-native-elements';
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 export default class DateComponent extends React.Component {
-
+  static navigationOptions = {
+    title: '3/5 Choisis ta date'
+  };
   _goToPlace = () => this.props.navigation.navigate('Place');
   _goBack = () => this.props.navigation.navigate('Games');
   render(){
     return(
       <View style={styles.container}>
-        <Text>
-          Date Component
-        </Text>
-        <Button onPress={this._goToPlace} title='Suivant'/>
-        <Button onPress={this._goBack} title='Retour'/>
+        <ScrollView>
+        </ScrollView>
+        <Button titleStyle={styles.btnStyle} onPress={this._goToPlace} title='SUIVANT'/>
+        <Button titleStyle={styles.btnStyle} onPress={this._goBack} title='RETOUR'/>
       </View>
     )
   }
@@ -23,7 +24,12 @@ export default class DateComponent extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: '#172533',
+  },
+  btnStyle: {
+    color: 'black',
+    fontFamily: 'Montserrat-regular',
+    fontSize: 22,
+    fontWeight: 'bold'
   }
 })
