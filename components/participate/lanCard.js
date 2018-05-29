@@ -1,36 +1,64 @@
 import React from 'React';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 
+const event = [
+  {
+    author: 'Truc',
+    titleLan: 'Nom de la lan',
+    description: 'Description de la lan. Lorem ipsum dolor sit amet, dolor sit amet ...',
+    maxPeople: 6,
+    date: '12.06.18  -  15H / 17H'
+  },
+  {
+    author: 'Bidule',
+    titleLan: 'Nom de la lan 2',
+    description: 'Description de la lan. Lorem ipsum dolor sit amet, dolor sit amet ...',
+    maxPeople: 4,
+    date: '12.06.18  -  15H / 17H'
+  }
+];
 
 export default class LanCard extends React.Component {
 
   render() {
+
+    var eventCard = event.map( (e, i) => {
+      return(
+        <View key={i} style={Styles.cardContainer}>
+
+          <View style={Styles.imgLanContainer}>
+            <Image style={Styles.imgLan}source={require('../../assets/images/games/wallpaper/test.jpg')}/>
+          </View>
+
+
+          <View style={Styles.descContainer}>
+            <Text style={Styles.authorLan}>{e.author} ORGANISE LA LAN </Text>
+            <Text style={Styles.titleLan}>{e.titleLan}</Text>
+            <Text style={Styles.descLan}>{e.description}</Text>
+
+            <View style={Styles.moreInfosLanContainer}>
+              <Icon name='account-box' color='#008b6b' iconStyle={{fontSize: 16}} />
+              <Text style={Styles.moreInfosLan}>{e.maxPeople} PERS. MAX</Text>
+            </View>
+
+            <View style={Styles.moreInfosLanContainer}>
+              <Icon name='date-range' color='#008b6b' iconStyle={{fontSize: 16}} />
+              <Text style={Styles.moreInfosLan}>{e.date}</Text>
+            </View>
+          </View>
+
+        </View>
+      )
+    });
+
+
     return(
-      <View style={Styles.cardContainer}>
-
-        <View style={Styles.imgLanContainer}>
-          <Image style={Styles.imgLan}source={require('../../assets/images/games/wallpaper/test.jpg')}/>
-        </View>
-
-
-        <View style={Styles.descContainer}>
-          <Text style={Styles.authorLan}>PSEUDOUSER ORGANISE LA LAN </Text>
-          <Text style={Styles.titleLan}>Nom de la Lan</Text>
-          <Text style={Styles.descLan}>Description de la lan. Lorem ipsum dolor sit amet, dolor sit amet ...</Text>
-
-          <View style={Styles.moreInfosLanContainer}>
-            <Icon name='account-box' color='#008b6b' iconStyle={{fontSize: 16}} />
-            <Text style={Styles.moreInfosLan}>6 PERS. MAX</Text>
-          </View>
-
-          <View style={Styles.moreInfosLanContainer}>
-            <Icon name='date-range' color='#008b6b' iconStyle={{fontSize: 16}} />
-            <Text style={Styles.moreInfosLan}>12.06.18  -  15H / 17H</Text>
-          </View>
-        </View>
-
+    <ScrollView horizontal={true}>
+      <View style={Styles.listCardContainer} >
+        {eventCard}
       </View>
+    </ScrollView>
     )
   }
 
@@ -38,11 +66,14 @@ export default class LanCard extends React.Component {
 
 
 const Styles = StyleSheet.create({
+  listCardContainer: {
+    flexDirection: 'row',
+  },
   cardContainer: {
     backgroundColor: '#ffffff',
     width: 250,
-    marginRight: 20,
-    marginLeft: 20,
+    marginRight: 10,
+    marginLeft: 10,
     borderRadius: 5,
     padding: 1
   },
