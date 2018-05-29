@@ -4,15 +4,14 @@ import {Provider} from 'react-redux';
 import {createStore, combineReducers}  from 'redux';
 import {Font} from 'expo';
 
+// N A V I G A T I O N
 import RootNavigation from './navigation/rootnavigation';
+
+// R E D U C E R S
 import filter from './reducers/filter.reducer.js';
 import eventModal from './reducers/eventmodal.reducer.js';
-
- var globalReducers = combineReducers({ filter, eventModal });
- const store = createStore(globalReducers);
-
-// enlever cette ligne du dessous et décommenter les lignes du dessus pour utiliser reducer
-//const store = null;
+var globalReducers = combineReducers({ filter, eventModal });
+const store = createStore(globalReducers);
 
 export default class App extends React.Component {
 
