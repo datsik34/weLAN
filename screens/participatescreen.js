@@ -8,7 +8,6 @@ import LanCard from './../components/participate/lanCard.js';
 import Filter from './../components/participate/filter.js';
 import Event from './../components/participate/event.js';
 
-
 class ParticipateScreen extends React.Component {
   constructor(){
     super();
@@ -25,7 +24,6 @@ class ParticipateScreen extends React.Component {
     return (
       <View style={Styles.container}>
           <View style={Styles.mapContainer}>
-
             <MapView
               provider='google'
               style={Styles.map}
@@ -63,11 +61,8 @@ class ParticipateScreen extends React.Component {
               ]}
             >
             </MapView>
-
-
             <View style={Styles.hearderMapContainer}>
               <Image style={Styles.logo} source={require('../assets/images/resources/logo.svg.png')}/>
-
               <Avatar
                 size="medium"
                 rounded
@@ -75,9 +70,7 @@ class ParticipateScreen extends React.Component {
                 onPress={this._goBack}
                 containerStyle={Styles.avatarUser}
               />
-
             </View>
-
             <View style={Styles.btnFilterContainer}>
               <Button
                 title='Filtres'
@@ -94,16 +87,12 @@ class ParticipateScreen extends React.Component {
                 onPress={this.props.onOpenFilterClick}
               />
             </View>
-
           </View>
-
         <View style={Styles.lanListContainer}>
             <LanCard/>
         </View>
-
         <Event />
         <Filter />
-
       </View>
     );
   }

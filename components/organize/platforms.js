@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Col, Row, Grid } from "react-native-easy-grid";
 
@@ -13,6 +13,7 @@ export default class PlatformsComponent extends React.Component {
     title: '1/5 Choisis ta plateforme'
   };
 
+  //Navigation
   _goToGames = () => this.props.navigation.navigate('Games');
   _goBack = () => this.props.navigation.navigate('Profile');
 
@@ -58,10 +59,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   btnColorGreen: {
-    backgroundColor: '#00b14c'
+    backgroundColor: '#00b14c',
+    borderRadius: 0
   },
   btnColorGrey: {
-    backgroundColor: '#606060'
+    backgroundColor: '#606060',
+    borderRadius: 0
   },
   contBtn: {
     flexDirection: 'row-reverse',
