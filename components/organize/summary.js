@@ -33,8 +33,10 @@ export default class SummaryComponent extends React.Component {
       <View style={styles.container}>
         <ScrollView>
         </ScrollView>
-        <Button titleStyle={styles.btnStyle} onPress={this._goToProfile} title='VALIDER'/>
-        <Button titleStyle={styles.btnStyle} onPress={this._goBack} title='RETOUR'/>
+        <View style={styles.contBtn}>
+          <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGreen} titleStyle={styles.btnStyle} onPress={this._goToProfile} title='VALIDER'/>
+          <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGrey} titleStyle={styles.btnStyle} onPress={this._goBack} title='RETOUR'/>
+        </View>
       </View>
     )
   }
@@ -46,9 +48,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#172533',
   },
   btnStyle: {
-    color: 'black',
+    color: '#172533',
     fontFamily: 'Montserrat-regular',
     fontSize: 22,
     fontWeight: 'bold'
+  },
+  btnColorGreen: {
+    backgroundColor: '#00b14c'
+  },
+  btnColorGrey: {
+    backgroundColor: '#606060'
+  },
+  contBtn: {
+    flexDirection: 'row-reverse',
+    alignSelf: "stretch",
+    justifyContent: 'space-between',
+  },
+  btnContStyle: {
+    width: '50%'
   }
 })

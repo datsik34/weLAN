@@ -65,13 +65,13 @@ const styles = StyleSheet.create({
     color: '#e05504',
     fontFamily: 'Montserrat-regular',
     fontWeight: 'normal',
-    fontSize: 18
+    fontSize: 16
   },
   btnLogoutCont: {
     marginRight: 18
   },
   btnTitle: {
-    color: 'black',
+    color: '#172533',
     fontFamily: 'Montserrat-regular',
     fontSize: 22,
     fontWeight: 'bold'

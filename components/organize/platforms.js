@@ -8,15 +8,6 @@ import Ps4 from './platforms/ps4';
 import XboxOne from './platforms/xboxone';
 import NintendoSwitch from './platforms/nintendoswitch';
 
-const stylesHeader = StyleSheet.create({
-  logo: {
-    width: 55,
-    height: 55,
-    marginLeft: 5,
-    position: 'relative'
-  }
-})
-
 export default class PlatformsComponent extends React.Component {
   static navigationOptions = {
     title: '1/5 Choisis ta plateforme'
@@ -40,8 +31,10 @@ export default class PlatformsComponent extends React.Component {
             </Row>
           </Grid>
         </ScrollView>
-        <Button buttonStyle={styles.btnColorGreen} titleStyle={styles.btnTitle} onPress={this._goToGames} title='SUIVANT'/>
-        <Button buttonStyle={styles.btnColorGrey} titleStyle={styles.btnTitle} onPress={this._goBack} title='RETOUR'/>
+        <View style={styles.contBtn}>
+          <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGreen} titleStyle={styles.btnTitle} onPress={this._goToGames} title='SUIVANT'/>
+          <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGrey} titleStyle={styles.btnTitle} onPress={this._goBack} title='RETOUR'/>
+        </View>
       </View>
     )
   }
@@ -59,7 +52,7 @@ const styles = StyleSheet.create({
     height: 200
   },
   btnTitle: {
-    color: 'black',
+    color: '#172533',
     fontFamily: 'Montserrat-regular',
     fontSize: 22,
     fontWeight: 'bold'
@@ -69,5 +62,13 @@ const styles = StyleSheet.create({
   },
   btnColorGrey: {
     backgroundColor: '#606060'
+  },
+  contBtn: {
+    flexDirection: 'row-reverse',
+    alignSelf: "stretch",
+    justifyContent: 'space-between',
+  },
+  btnContStyle: {
+    width: '50%'
   }
 })

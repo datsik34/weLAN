@@ -6,20 +6,40 @@ import { Font, Video } from 'expo';
 import Login from '../components/home/login.js'
 import SignUp from '../components/home/signup.js'
 
+
+function renderIf(condition, content) {
+    if (condition) {
+        return content;
+    } else {
+        return null;
+    }
+}
+
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
 
+  constructor(){
+    super();
+    this.state = { showLoggin: true }
+  }
+
+  //fonctions Connexion/Création de compte
   _login = () => this.props.navigation.navigate('App');
   _signup = () => console.log('click signup');
+
+  //fonctions affichage Login/SignUp
+  _toggleLogin = () => this.setState({showLoggin: true});
+  _toggleSignUp = () => this.setState({showLoggin: false});
+
 
   render() {
     return (
       <View style={styles.containerVideo}>
         <Video
           source={require('../assets/movies/test.mp4')}
-          rate={0.9}
+          rate={1}
           isMuted={true}
           resizeMode="cover"
           shouldPlay
@@ -31,11 +51,11 @@ export default class HomeScreen extends React.Component {
         </View>
         <View style={styles.containerLogin}>
           <View style={styles.btnContainer}>
-            <Button titleStyle={styles.btnTitle} onPress={this._showLogin} clear={true} title='Login'/>
-            <Button titleStyle={styles.btnTitle} onPress={this._showSignUp} clear={true} title='Sign Up'/>
+            <Button titleStyle={styles.btnTitle} onPress={this._toggleLogin} clear={true} title='Login'/>
+            <Button titleStyle={styles.btnTitle} onPress={this._toggleSignUp} clear={true} title='Sign Up'/>
           </View>
-          <Login _login={this._login}/>
-          {/* <SignUp _signup={this._signup}/> */}
+          {renderIf(this.state.showLoggin, <Login _login={this._login}/>)}
+          {renderIf(!this.state.showLoggin, <SignUp _signup={this._signup}/>)}
         </View>
       </View>
     )
