@@ -1,16 +1,32 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { Button, Icon } from 'react-native-elements';
+import { StyleSheet, View, ScrollView, Text } from 'react-native';
+import { Button, Icon, CheckBox, Divider, Badge } from 'react-native-elements';
 import { connect } from 'react-redux';
+
+import PlatformFilter from './plateformfilter.js';
+import GameFilter from './gamefilter.js';
+
+const platformList = ['PC', 'PS4', 'XBOX ONE', 'SWITCH'];
+const gameList = ['Fortnite', 'GS GO', 'Hearthstone', 'Starcraft', 'Owerwatch', 'LOL'];
 
 
 class Filter extends React.Component {
 
   render(){
 
+    var plateformChoice = platformList.map( (p, i) => (
+      <PlatformFilter key={i} name={p} />
+    ));
+
+    var gameChoice = gameList.map( (g, i) =>(
+      <GameFilter key={i} title={g} />
+    ));
+
+
     if(this.props.filter){
       return(
         <View style={Styles.filterContainer}>
+
           <View style={Styles.headerFilter}>
             <Icon
               name='close'
@@ -18,10 +34,30 @@ class Filter extends React.Component {
               color='#ffffff'
               onPress={this.props.onCloseFilterClick}
             />
+            <Text style={Styles.CleanFilter}>Effacer</Text>
           </View>
-        </View>)
+
+          <ScrollView>
+            <View>
+
+              <Text style={Styles.titlePart}>Quel Plateforme ?</Text>
+                {plateformChoice}
+              <Divider style={Styles.divider} />
+
+
+              <Text style={Styles.titlePart}>Quel jeu ?</Text>
+              <View style={Styles.badgeContainer}>
+                {gameChoice}
+              </View>
+              <Divider style={Styles.divider} />
+
+
+            </View>
+          </ScrollView>
+        </View>
+      )
     } else {
-      return(<View></View>)
+      return(null)
     }
   }
 }
@@ -47,7 +83,7 @@ const Styles = StyleSheet.create({
   filterContainer: {
     zIndex: 2,
     flex: 1,
-    backgroundColor:'rgba(0,0,0,0.8)',
+    backgroundColor:'rgba(24,38,51,0.95)',
     position: 'absolute',
     bottom: 0,
     top: 0,
@@ -56,6 +92,31 @@ const Styles = StyleSheet.create({
     padding: 20
   },
   headerFilter: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 20
+  },
+  CleanFilter: {
+    fontFamily:'Montserrat-Light',
+    fontSize: 18,
+    color: '#ffffff'
+  },
+  titlePart: {
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 19,
+    color: '#ffffff',
+    marginTop: 20,
+    marginBottom: 30
+  },
+  divider: {
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    height: 1
+  },
+  badgeContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    marginBottom: 30,
   }
 })
