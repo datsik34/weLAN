@@ -2,17 +2,44 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { Button, Avatar, Icon } from 'react-native-elements';
 import { MapView } from 'expo';
+import { connect } from 'react-redux';
 
 import LanCard from './../components/participate/lanCard.js';
+import Filter from './../components/participate/filter.js';
 
-export default class ParticipateScreen extends React.Component {
+
+class ParticipateScreen extends React.Component {
+  constructor(){
+    super();
+    this.state = { filterIsVisible: false }
+  }
+
   static navigationOptions = {
     header: null
   }
 
   _goBack = () => this.props.navigation.navigate('Profile');
 
+
+  // _isVisible = () => {
+  //   console.log('Clic détécté !!!');
+  //
+  //   this.setState({
+  //     filterIsVisible: !this.state.filterIsVisible
+  //   })
+  // }
+
+
   render() {
+
+    var filterContainer
+    if(!this.state.filterIsVisible){
+      filterContainer = 'non visible'
+    } else {
+       filterContainer = 'visible'
+    }
+
+
     return (
       <View style={Styles.container}>
           <View style={Styles.mapContainer}>
@@ -82,19 +109,31 @@ export default class ParticipateScreen extends React.Component {
                     color='#172533'
                   />
                 }
+                onPress={this.props.onOpenFilterClick}
               />
             </View>
 
           </View>
 
         <View style={Styles.lanListContainer}>
-          <LanCard/>
+            <LanCard/>
         </View>
+
+        <Filter />
 
       </View>
     );
   }
 }
+
+function mapDispatshToProps(dispatch) {
+  return{
+    onOpenFilterClick: function(){
+      dispatch( {type: 'openFilter'} );
+    }
+  }
+}
+export default connect(null, mapDispatshToProps)(ParticipateScreen);
 
 
 const Styles = StyleSheet.create({
@@ -126,6 +165,7 @@ const Styles = StyleSheet.create({
     flex: 1,
   },
   btnFilterContainer: {
+    zIndex:1,
     flexDirection: 'row',
     position:'absolute',
     bottom: 20,
@@ -140,7 +180,5 @@ const Styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
     backgroundColor: '#172533',
-
-
   }
 });

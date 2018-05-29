@@ -4,11 +4,13 @@ import {Provider} from 'react-redux';
 import {createStore, combineReducers}  from 'redux';
 
 import RootNavigation from './navigation/rootnavigation';
+import filter from './reducers/filter.reducer.js';
 
-// var globalReducers = combineReducers({});
-// const store = createStore(globalReducers);
+ var globalReducers = combineReducers({ filter });
+ const store = createStore(globalReducers);
+
 // enlever cette ligne du dessous et décommenter les lignes du dessus pour utiliser reducer
-const store = null;
+//const store = null;
 
 export default class App extends React.Component {
   render() {
