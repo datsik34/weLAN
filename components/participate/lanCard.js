@@ -1,6 +1,7 @@
 import React from 'React';
-import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
 
 const event = [
   {
@@ -19,13 +20,14 @@ const event = [
   }
 ];
 
-export default class LanCard extends React.Component {
+class LanCard extends React.Component {
 
   render() {
 
+
     var eventCard = event.map( (e, i) => {
       return(
-        <View key={i} style={Styles.cardContainer}>
+        <TouchableOpacity key={i} style={Styles.cardContainer} onPress={(titleLan) => this.props.onClickCard(e.titleLan)}>
 
           <View style={Styles.imgLanContainer}>
             <Image style={Styles.imgLan}source={require('../../assets/images/games/wallpaper/test.jpg')}/>
@@ -48,7 +50,7 @@ export default class LanCard extends React.Component {
             </View>
           </View>
 
-        </View>
+        </TouchableOpacity>
       )
     });
 
@@ -63,6 +65,20 @@ export default class LanCard extends React.Component {
   }
 
 };
+
+
+function mapDispatshToProps(dispatch){
+  return{
+    onClickCard: function(titleLan){
+      dispatch({
+        type: 'viewEvent',
+        titleLan: titleLan
+     })
+    }
+  }
+}
+export default connect(null, mapDispatshToProps)(LanCard);
+
 
 
 const Styles = StyleSheet.create({

@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { Button, Avatar, Icon } from 'react-native-elements';
+import { Button, Avatar, Icon, Overlay } from 'react-native-elements';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
 
 import LanCard from './../components/participate/lanCard.js';
 import Filter from './../components/participate/filter.js';
+import Event from './../components/participate/event.js';
 
 
 class ParticipateScreen extends React.Component {
@@ -20,26 +21,7 @@ class ParticipateScreen extends React.Component {
 
   _goBack = () => this.props.navigation.navigate('Profile');
 
-
-  // _isVisible = () => {
-  //   console.log('Clic détécté !!!');
-  //
-  //   this.setState({
-  //     filterIsVisible: !this.state.filterIsVisible
-  //   })
-  // }
-
-
   render() {
-
-    var filterContainer
-    if(!this.state.filterIsVisible){
-      filterContainer = 'non visible'
-    } else {
-       filterContainer = 'visible'
-    }
-
-
     return (
       <View style={Styles.container}>
           <View style={Styles.mapContainer}>
@@ -53,8 +35,8 @@ class ParticipateScreen extends React.Component {
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
               }}
-              customMapStyle={
-                [{ "elementType": "geometry", "stylers": [{"color": "#242f3e"}] },
+              customMapStyle={[
+                { "elementType": "geometry", "stylers": [{"color": "#242f3e"}] },
                 { "elementType": "labels.text.fill", "stylers": [{ "color": "#128a6b" }]},
                 { "elementType": "labels.text.stroke", "stylers": [{ "color": "#242f3e" }]},
                 { "featureType": "administrative", "elementType": "geometry", "stylers": [{ "visibility": "off"}]},
@@ -119,6 +101,7 @@ class ParticipateScreen extends React.Component {
             <LanCard/>
         </View>
 
+        <Event />
         <Filter />
 
       </View>

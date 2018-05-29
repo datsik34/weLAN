@@ -6,8 +6,9 @@ import {Font} from 'expo';
 
 import RootNavigation from './navigation/rootnavigation';
 import filter from './reducers/filter.reducer.js';
+import eventModal from './reducers/eventmodal.reducer.js';
 
- var globalReducers = combineReducers({ filter });
+ var globalReducers = combineReducers({ filter, eventModal });
  const store = createStore(globalReducers);
 
 // enlever cette ligne du dessous et décommenter les lignes du dessus pour utiliser reducer
