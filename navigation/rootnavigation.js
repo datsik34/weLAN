@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import { StyleSheet, Image } from 'react-native';
-import { Font } from 'expo';
 
 //import des screens
 import HomeScreen from '../screens/homescreen.js';
@@ -74,11 +73,6 @@ const AppSwitch = createSwitchNavigator(
 
 //RootNavigation (qui est appelé dans App.js) renvoie AppSwitch, donc Auth qui est la route par défaut.
 export default class RootNavigation extends React.Component {
-  componentDidMount() {
-      Font.loadAsync({
-        'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
-      });
-  }
   render(){
     return (
     <AppSwitch/>

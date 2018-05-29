@@ -12,78 +12,74 @@ export default class HomeScreen extends React.Component {
   };
 
   _login = () => this.props.navigation.navigate('App');
-
-  componentDidMount() {
-      Font.loadAsync({
-        'Teko-Light': require('../assets/fonts/Teko-Light.ttf'),
-        'Teko-Bold': require('../assets/fonts/Teko-Bold.ttf'),
-        'Montserrat-Light': require('../assets/fonts/Montserrat-Light.ttf'),
-        'Montserrat-regular': require('../assets/fonts/Montserrat-Regular.ttf'),
-        'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
-      });
-  }
+  _signup = () => console.log('click signup');
 
   render() {
     return (
-      // <ImageBackground style={styles.containerBackground} blurRadius={0.5} source={require("../assets/images/resources/background.jpg")}>
-      //   <View style={styles.container}>
-      //     <Image  style={styles.logo} source={require('../assets/images/resources/logo.svg.png')}/>
-      //     <Login _login={this._login}/>
-      //   </View>
-      // </ImageBackground>
-
       <View style={styles.containerVideo}>
         <Video
           source={require('../assets/movies/test.mp4')}
-          rate={1.0}
-          volume={1.0}
+          rate={0.9}
           isMuted={true}
           resizeMode="cover"
           shouldPlay
           isLooping
-          style={{
-            width: '100%',
-            height: '100%',
-            flex: 1,
-            position: 'absolute',
-            justifyContent: 'center',
-          }}
+          style={styles.video}
         />
         <View style={styles.containerLogo}>
           <Image  style={styles.logo} source={require('../assets/images/resources/logo.svg.png')}/>
         </View>
         <View style={styles.containerLogin}>
+          <View style={styles.btnContainer}>
+            <Button titleStyle={styles.btnTitle} onPress={this._showLogin} clear={true} title='Login'/>
+            <Button titleStyle={styles.btnTitle} onPress={this._showSignUp} clear={true} title='Sign Up'/>
+          </View>
           <Login _login={this._login}/>
+          {/* <SignUp _signup={this._signup}/> */}
         </View>
-        <View style={styles.containerLogin}></View>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  // containerBackground: {
-  //   flex: 1,
-  //   marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
-  // },
+  containerVideo: {
+    flex:1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   containerLogo: {
-    flex: 3,
+    flex: 1.4,
     alignItems: 'center',
     justifyContent: 'center',
   },
   containerLogin: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginBottom: 150,
   },
   logo: {
-    width: 200,
-    height: 200,
-
+    marginTop: 60,
+    width: 230,
+    height: 230,
   },
-  containerVideo: {
-    flex:1,
-    alignItems: 'center',
-    justifyContent: 'center'
+  video: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+  },
+  btnTitle: {
+    color: 'white',
+    fontSize: 22,
+    fontWeight: 'bold',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {width: 1, height: 1},
+    textShadowRadius: 2
+  },
+  btnContainer: {
+    alignSelf: "stretch",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 20,
+    paddingRight: 20,
   }
 })
