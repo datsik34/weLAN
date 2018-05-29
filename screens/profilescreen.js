@@ -1,30 +1,30 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Platform, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { Button, Header } from 'react-native-elements';
-
 
 export default class ProfileScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
-      const params = navigation.state.params || {};
-      return {
-        headerTitle: 'Profil',
-        headerTitleStyle: {
-          flex: 1,
-          color: '#ffffff',
-          textAlign: 'center',
-          fontFamily: 'Montserrat-Bold',
-          fontWeight: 'normal'
-        },
-        headerRight: (
-          <Button titleStyle={styles.btnLogoutTitle} containerStyle={styles.btnLogoutCont} onPress={params.logout} clear={true} title="Log Out"/>
-        ),
-      };
+    const params = navigation.state.params || {};
+    return {
+      headerTitle: 'Profil',
+      headerTitleStyle: {
+        flex: 1,
+        color: '#ffffff',
+        textAlign: 'center',
+        fontFamily: 'Montserrat-Bold',
+        fontWeight: 'normal'
+      },
+      headerRight: (
+        <Button titleStyle={styles.btnLogoutTitle} containerStyle={styles.btnLogoutCont} onPress={params.logout} clear={true} title="Log Out"/>
+      ),
     };
+  };
 
     componentWillMount() {
       this.props.navigation.setParams({ logout: this._logOut });
     }
 
+    //Navigation
   _logOut = () => this.props.navigation.navigate('Auth');
   _goToPlatforms = () => this.props.navigation.navigate('Platforms');
   _goToParticipate = () => this.props.navigation.navigate('Participate');
@@ -81,5 +81,4 @@ const styles = StyleSheet.create({
     width: 230,
     marginBottom: 6
   }
-
 });

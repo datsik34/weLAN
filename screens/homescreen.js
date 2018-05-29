@@ -1,38 +1,35 @@
 import React from 'react';
-import {StyleSheet, Text, View, ImageBackground, Image, StatusBar, Platform} from 'react-native';
-import { Input, Button } from 'react-native-elements';
-import { Font, Video } from 'expo';
+import {StyleSheet, Text, View, Image} from 'react-native';
+import { Button } from 'react-native-elements';
+import { Video } from 'expo';
 
 import Login from '../components/home/login.js'
 import SignUp from '../components/home/signup.js'
 
-
 function renderIf(condition, content) {
-    if (condition) {
-        return content;
-    } else {
-        return null;
-    }
+  if (condition) {
+    return content;
+  } else {
+    return null;
+  }
 }
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
-
   constructor(){
     super();
-    this.state = { showLoggin: true }
+    this.state = { showingLogin: true }
   }
 
   //fonctions Connexion/Création de compte
   _login = () => this.props.navigation.navigate('App');
   _signup = () => console.log('click signup');
 
-  //fonctions affichage Login/SignUp
-  _toggleLogin = () => this.setState({showLoggin: true});
-  _toggleSignUp = () => this.setState({showLoggin: false});
-
+//fonction Switch Login/SignUp
+  _toggleLogin = () => this.setState({ showingLogin: true })
+  _toggleSignUp = () => this.setState({ showingLogin: false })
 
   render() {
     return (
@@ -54,8 +51,8 @@ export default class HomeScreen extends React.Component {
             <Button titleStyle={styles.btnTitle} onPress={this._toggleLogin} clear={true} title='Login'/>
             <Button titleStyle={styles.btnTitle} onPress={this._toggleSignUp} clear={true} title='Sign Up'/>
           </View>
-          {renderIf(this.state.showLoggin, <Login _login={this._login}/>)}
-          {renderIf(!this.state.showLoggin, <SignUp _signup={this._signup}/>)}
+          {renderIf(this.state.showingLogin, <Login _login={this._login}/>)}
+          {renderIf(!this.state.showingLogin, <SignUp _signup={this._signup}/>)}
         </View>
       </View>
     )

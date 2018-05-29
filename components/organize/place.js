@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { Button } from 'react-native-elements';
-import { Col, Row, Grid } from "react-native-easy-grid";
 
 export default class PlaceComponent extends React.Component {
   static navigationOptions = {
     title: '4/5 Choisis ton lieu'
   };
+
+  //Navigation
   _goToOptions = () => this.props.navigation.navigate('Options');
   _goBack = () => this.props.navigation.navigate('Date');
 
@@ -36,10 +37,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   btnColorGreen: {
-    backgroundColor: '#00b14c'
+    backgroundColor: '#00b14c',
+    borderRadius: 0
   },
   btnColorGrey: {
-    backgroundColor: '#606060'
+    backgroundColor: '#606060',
+    borderRadius: 0
   },
   contBtn: {
     flexDirection: 'row-reverse',

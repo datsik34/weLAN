@@ -1,13 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, DatePickerIOS } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { Button } from 'react-native-elements';
-import { Col, Row, Grid } from "react-native-easy-grid";
 
 export default class DateComponent extends React.Component {
   static navigationOptions = {
     title: '3/5 Choisis ta date'
   };
 
+  //Navigation
   _goToPlace = () => this.props.navigation.navigate('Place');
   _goBack = () => this.props.navigation.navigate('Games');
 
@@ -45,10 +45,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   btnColorGreen: {
-    backgroundColor: '#00b14c'
+    backgroundColor: '#00b14c',
+    borderRadius: 0
   },
   btnColorGrey: {
-    backgroundColor: '#606060'
+    backgroundColor: '#606060',
+    borderRadius: 0
   },
   contBtn: {
     flexDirection: 'row-reverse',
