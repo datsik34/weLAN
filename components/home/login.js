@@ -22,14 +22,14 @@ const styles = StyleSheet.create({
     flex: 1
   },
   login: {
-    width: 280,
+    width: 300,
     alignItems: 'center',
   },
   inputStyle: {
     color: 'white',
   },
   btnTitle: {
-    color: 'white',
+    color: '#172533',
     fontSize: 22,
     fontWeight: 'bold'
   },

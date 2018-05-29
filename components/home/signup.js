@@ -22,13 +22,13 @@ export default class SignUp extends React.Component {
 const styles = StyleSheet.create({
   login: {
     width: 300,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   inputStyle: {
     color: 'white',
   },
   btnTitle: {
-    color: 'white',
+    color: '#172533',
     fontSize: 22,
     fontWeight: 'bold'
   },

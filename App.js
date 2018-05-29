@@ -5,8 +5,9 @@ import {createStore, combineReducers}  from 'redux';
 import {Font} from 'expo';
 
 import RootNavigation from './navigation/rootnavigation';
-import filter from './reducers/filter.reducer.js';
 
+// R E D U C E R S
+import filter from './reducers/filter.reducer.js';
  var globalReducers = combineReducers({ filter });
  const store = createStore(globalReducers);
 
