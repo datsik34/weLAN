@@ -22,9 +22,9 @@ export default class ProfileScreen extends React.Component {
     };
   };
 
-    componentWillMount() {
-      this.props.navigation.setParams({ logout: this._logOut });
-    }
+  componentWillMount() {
+    this.props.navigation.setParams({ logout: this._logOut });
+  }
 
     //Navigation
   _logOut = () => this.props.navigation.navigate('Auth');
