@@ -27,7 +27,7 @@ class LanCard extends React.Component {
 
     var eventCard = event.map( (e, i) => {
       return(
-        <TouchableOpacity key={i} style={Styles.cardContainer} onPress={(titleLan) => this.props.onClickCard(e.titleLan)}>
+        <TouchableOpacity key={i} style={Styles.cardContainer} onPress={(indice) => this.props.onClickCard(i)}>
 
           <View style={Styles.imgLanContainer}>
             <Image style={Styles.imgLan}source={require('../../assets/images/games/wallpaper/test.jpg')}/>
@@ -69,10 +69,14 @@ class LanCard extends React.Component {
 
 function mapDispatshToProps(dispatch){
   return{
-    onClickCard: function(titleLan){
+    onClickCard: function(indice){
       dispatch({
         type: 'viewEvent',
-        titleLan: titleLan
+        titleLan: event[indice].titleLan,
+        author: event[indice].author,
+        description: event[indice].description,
+        maxPeople: event[indice].maxPeople,
+        date: event[indice].date
      })
     }
   }
