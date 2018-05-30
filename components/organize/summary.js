@@ -55,10 +55,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   btnColorGreen: {
-    backgroundColor: '#00b14c'
+    backgroundColor: '#00b14c',
+    borderRadius: 0
   },
   btnColorGrey: {
-    backgroundColor: '#606060'
+    backgroundColor: '#606060',
+    borderRadius: 0
   },
   contBtn: {
     flexDirection: 'row-reverse',

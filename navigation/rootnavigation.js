@@ -39,7 +39,7 @@ const AppStack = createStackNavigator(
   {
     initialRouteName: 'Profile',
 
-    //Customization du header de l'app
+    //Customization du header de l'app sur tous les écrans de AppStack
     navigationOptions: {
       headerLeft: (<Image source={require('../assets/images/resources/logo.svg.png')} style={stylesHeader.logo}/>),
       headerStyle: {
@@ -57,7 +57,7 @@ const AppStack = createStackNavigator(
 );
 //la partie login/signup est dissociée du reste de l'App.
 //Le switch sert ici à jetter l'écran HomeScreen une fois la connexion faite, et non à stacker comme le fait StackNavigator
-//Target initiale au lancement de l'app : Auth
+//Target initiale au lancement de l'app : Auth donc HomeScreen
 const AuthStack = createStackNavigator({Home: HomeScreen});
 
 // AppSwitch contient le Navigator Auth (home) et App (le reste de l'app). Le chemin par défaut est Auth

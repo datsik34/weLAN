@@ -15,7 +15,6 @@ export default class Fortnite extends React.Component {
           style={styles.logoImage}
         />
       </TouchableOpacity>
-
     );
   }
 }

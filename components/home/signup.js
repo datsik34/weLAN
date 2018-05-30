@@ -1,10 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import { Input, Button } from 'react-native-elements';
-import { StackNavigator, SwitchNavigator } from 'react-navigation';
 
 export default class SignUp extends React.Component {
-
 
   render() {
     return (

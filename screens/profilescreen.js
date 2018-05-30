@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { Button, Header } from 'react-native-elements';
+import { StyleSheet, Text, View } from 'react-native';
+import { Button } from 'react-native-elements';
+
+import ProfileUser from '../components/profile/profileuser.js';
 
 export default class ProfileScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -32,9 +34,7 @@ export default class ProfileScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{color: 'white'}}>
-          Profile Screen
-        </Text>
+        <ProfileUser/>
         <View style={styles.buttonContainer}>
           <Button buttonStyle={styles.btnColor} titleStyle={styles.btnTitle} onPress={this._goToPlatforms} title='ORGANISER'/>
           <Button buttonStyle={styles.btnColor} titleStyle={styles.btnTitle} onPress={this._goToParticipate} title='PARTICIPER'/>
@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#172533',
   },
   buttonContainer: {
-    position: 'absolute',
     bottom:0
   },
   header: {
