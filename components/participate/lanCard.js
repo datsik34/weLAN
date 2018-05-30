@@ -9,14 +9,22 @@ const event = [
     titleLan: 'Nom de la lan',
     description: 'Description de la lan. Lorem ipsum dolor sit amet, dolor sit amet ...',
     maxPeople: 6,
-    date: '12.06.18  -  15H / 17H'
+    date: '12.06.18  -  15H / 17H',
+    address: '12 rue de la paix 69000 LYON',
+    minAge: 18,
+    maxAge: 30,
+    smoker: false
   },
   {
     author: 'Bidule',
     titleLan: 'Nom de la lan 2',
     description: 'Description de la lan. Lorem ipsum dolor sit amet, dolor sit amet ...',
     maxPeople: 4,
-    date: '12.06.18  -  15H / 17H'
+    date: '12.06.18  -  15H / 17H',
+    address: '24 rue Victor Hugo 69000 Lyon',
+    minAge: 25,
+    maxAge: 35,
+    smoker: true
   }
 ];
 
@@ -27,10 +35,10 @@ class LanCard extends React.Component {
 
     var eventCard = event.map( (e, i) => {
       return(
-        <TouchableOpacity key={i} style={Styles.cardContainer} onPress={(indice) => this.props.onClickCard(i)}>
+        <TouchableOpacity key={i} style={Styles.cardContainer} onPress={(indice) => this.props.onClickOpenEvent(i)}>
 
           <View style={Styles.imgLanContainer}>
-            <Image style={Styles.imgLan}source={require('../../assets/images/games/wallpaper/test.jpg')}/>
+            <Image style={Styles.imgLan} source={require('../../assets/images/games/wallpaper/test.jpg')}/>
           </View>
 
 
@@ -69,14 +77,18 @@ class LanCard extends React.Component {
 
 function mapDispatshToProps(dispatch){
   return{
-    onClickCard: function(indice){
+    onClickOpenEvent: function(indice){
       dispatch({
-        type: 'viewEvent',
+        type: 'openEventPopup',
         titleLan: event[indice].titleLan,
         author: event[indice].author,
         description: event[indice].description,
         maxPeople: event[indice].maxPeople,
-        date: event[indice].date
+        date: event[indice].date,
+        address: event[indice].address,
+        minAge: event[indice].minAge,
+        maxAge: event[indice].maxAge,
+        smoker: event[indice].smoker
      })
     }
   }
