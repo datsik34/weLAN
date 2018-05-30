@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, CheckBox } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, CheckBox, Text } from 'react-native';
 
 export default class XboxOne extends React.Component {
   render() {

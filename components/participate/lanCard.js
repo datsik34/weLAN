@@ -29,39 +29,30 @@ const event = [
 ];
 
 class LanCard extends React.Component {
-
   render() {
-
-
-    var eventCard = event.map( (e, i) => {
+    var eventCard = event.map((e, i) => {
       return(
         <TouchableOpacity key={i} style={Styles.cardContainer} onPress={(indice) => this.props.onClickOpenEvent(i)}>
-
           <View style={Styles.imgLanContainer}>
             <Image style={Styles.imgLan} source={require('../../assets/images/games/wallpaper/test.jpg')}/>
           </View>
-
-
           <View style={Styles.descContainer}>
             <Text style={Styles.authorLan}>{e.author} ORGANISE LA LAN </Text>
             <Text style={Styles.titleLan}>{e.titleLan}</Text>
             <Text style={Styles.descLan}>{e.description}</Text>
-
             <View style={Styles.moreInfosLanContainer}>
-              <Icon name='account-box' color='#008b6b' iconStyle={{fontSize: 16}} />
+              <Icon name='account-box' color='#008b6b' iconStyle={{fontSize: 16}}/>
               <Text style={Styles.moreInfosLan}>{e.maxPeople} PERS. MAX</Text>
             </View>
-
             <View style={Styles.moreInfosLanContainer}>
-              <Icon name='date-range' color='#008b6b' iconStyle={{fontSize: 16}} />
+              <Icon name='date-range' color='#008b6b' iconStyle={{fontSize: 16}}/>
               <Text style={Styles.moreInfosLan}>{e.date}</Text>
             </View>
           </View>
-
         </TouchableOpacity>
       )
-    });
-
+    }
+  );
 
     return(
     <ScrollView horizontal={true}>
@@ -71,9 +62,7 @@ class LanCard extends React.Component {
     </ScrollView>
     )
   }
-
 };
-
 
 function mapDispatshToProps(dispatch){
   return{
@@ -93,9 +82,8 @@ function mapDispatshToProps(dispatch){
     }
   }
 }
+
 export default connect(null, mapDispatshToProps)(LanCard);
-
-
 
 const Styles = StyleSheet.create({
   listCardContainer: {
@@ -117,6 +105,7 @@ const Styles = StyleSheet.create({
   imgLan: {
     width: 248,
     height: 120,
+    borderRadius: 5
   },
   descContainer: {
     padding: 9

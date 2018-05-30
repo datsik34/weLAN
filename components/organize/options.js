@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, TextInput, Picker } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 
 export default class OptionsComponent extends React.Component {

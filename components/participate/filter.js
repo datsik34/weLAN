@@ -9,49 +9,34 @@ import GameFilter from './gamefilter.js';
 const platformList = ['PC', 'PS4', 'XBOX ONE', 'SWITCH'];
 const gameList = ['Fortnite', 'GS GO', 'Hearthstone', 'Starcraft', 'Owerwatch', 'LOL'];
 
-
 class Filter extends React.Component {
-
   render(){
 
-    var plateformChoice = platformList.map( (p, i) => (
-      <PlatformFilter key={i} name={p} />
-    ));
+    var plateformChoice = platformList.map((p, i) =>
+      <PlatformFilter key={i} name={p}/>
+    );
 
-    var gameChoice = gameList.map( (g, i) =>(
-      <GameFilter key={i} title={g} />
-    ));
-
+    var gameChoice = gameList.map((g, i) =>
+      <GameFilter key={i} title={g}/>
+    );
 
     if(this.props.filter){
       return(
         <View style={Styles.filterContainer}>
-
           <View style={Styles.headerFilter}>
-            <Icon
-              name='close'
-              size={30}
-              color='#ffffff'
-              onPress={this.props.onCloseFilterClick}
-            />
+            <Icon name='close' size={30} color='#ffffff' onPress={this.props.onCloseFilterClick}/>
             <Text style={Styles.CleanFilter}>Effacer</Text>
           </View>
-
           <ScrollView>
             <View>
-
-              <Text style={Styles.titlePart}>Quel Plateforme ?</Text>
+              <Text style={Styles.titlePart}>Quelle Plateforme ?</Text>
                 {plateformChoice}
               <Divider style={Styles.divider} />
-
-
               <Text style={Styles.titlePart}>Quel jeu ?</Text>
               <View style={Styles.badgeContainer}>
                 {gameChoice}
               </View>
               <Divider style={Styles.divider} />
-
-
             </View>
           </ScrollView>
         </View>
@@ -77,7 +62,6 @@ function mapStateToProps(state){
 };
 
 export default connect(mapStateToProps, mapDispatshToProps)(Filter);
-
 
 const Styles = StyleSheet.create({
   filterContainer: {

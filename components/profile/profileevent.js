@@ -2,38 +2,19 @@ import React from 'react';
 import {StyleSheet, View, Text, ScrollView, Image } from 'react-native';
 import { Input, Button, Divider, Icon } from 'react-native-elements';
 
+// DONNÉES EN DUR, A RETIRER\\
 let events = [
   {
-    info: {
-      event_name: 'LAN LoL ce Weekend!',
-      participants: {
-        quantity: {
-          current: 3,
-          max: 5
-        }
-      }
-    },
-    location: '124 rue de la République, 69001 Lyon',
-    dates: {
-      start: '12-06-18 - 18h00',
-      end: '14-06-18 - 12h00',
-    }
+    info: {event_name: 'LAN LoL ce Weekend!',participants: {quantity: {current: 3,max: 5}}},
+    location: '124 rue de la République, 69001 Lyon',dates: {start: '12-06-18 - 18h00',end: '14-06-18 - 12h00',}
   },
   {
-    info: {
-      event_name: 'CS:GO/Dota2',
-      participants: {
-        quantity: {
-          current: 2,
-          max: 10
-        }
-      }
-    },
-    location: '40 rue Charlemagne, 69003 Lyon',
-    dates: {
-      start: '15-06-18 - 20h00',
-      end: '16-06-18 - 20h00',
-    }
+    info: {event_name: 'CS:GO/Dota2',participants: {quantity: {current: 2,max: 10}}},
+    location: '40 rue Charlemagne, 69003 Lyon',dates: {start: '15-06-18 - 20h00',end: '16-06-18 - 20h00',}
+  },
+  {
+    info: {event_name: 'FORNITE: PRO ONLY',participants: {quantity: {current: 4,max: 5}}},
+    location: '33 rue René Leynaud, 69001 Lyon',dates: {start: '30-07-18 - 20h00',end: '31-07-18 - 20h00',}
   }
 ]
 
@@ -45,13 +26,13 @@ export default class ProfileEvent extends React.Component {
           <Text style={styles.cardTitle}>{e.info.event_name}</Text>
           <View style={styles.align}>
             <Icon name='place' color='#008b6b'/>
-            <View>
+            <View style={styles.location}>
               <Text style={styles.cardTxt}>{e.location}</Text>
             </View>
           </View>
           <View style={styles.spaceBetween}>
             <View style={styles.align}>
-              <Icon name='date-range' color='#008b6b'/>
+                <Icon name='date-range' color='#008b6b'/>
               <View>
                 <Text style={styles.cardTxt}>{e.dates.start}</Text>
                 <Text style={styles.cardTxt}>{e.dates.end}</Text>
@@ -69,7 +50,7 @@ export default class ProfileEvent extends React.Component {
     }
   );
     return (
-      <View style={styles.cont1}>
+      <View style={styles.cont}>
         <ScrollView horizontal={true}>
           {myEventsCard}
         </ScrollView>
@@ -79,8 +60,8 @@ export default class ProfileEvent extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  cont1: {
-    // backgroundColor: 'red'
+  cont: {
+    marginTop: 10
   },
   container: {
     flex: 1,
@@ -115,6 +96,10 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     color: 'black',
     fontSize: 17
+  },
+  location: {
+    width: '80%',
+    marginBottom: 10
   },
   spaceBetween: {
     alignSelf: "stretch",

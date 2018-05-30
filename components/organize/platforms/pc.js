@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 
 export default class Pc extends React.Component {
   render() {

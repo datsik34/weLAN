@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 export default class LoL extends React.Component {
   render() {
@@ -15,7 +15,6 @@ export default class LoL extends React.Component {
           style={styles.logoImage}
         />
       </TouchableOpacity>
-
     );
   }
 }
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
   },
   logoImage: {
     width: '100%',
-    height: '55%',
+    height: '100%',
     flex: 1,
     position: 'absolute',
     justifyContent: 'center',
