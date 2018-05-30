@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 
-
 export default class PlatformFilter extends React.Component {
   constructor(){
     super();
@@ -32,7 +31,6 @@ export default class PlatformFilter extends React.Component {
       </View>
     )
   }
-
 }
 
 const Styles = StyleSheet.create({

@@ -36,7 +36,7 @@ export default class ProfileUser extends React.Component {
         <View style={styles.containerRow}>
           <Text style={styles.rowTitle}>Téléphone</Text>
         </View>
-        <Text style={styles.profileBioText}>{user.phone}</Text>
+        <Text style={styles.profileBioPhone}>{user.phone}</Text>
         <View style={styles.containerRow}>
           <Text style={styles.rowTitle}>Mes événements</Text>
         </View>
@@ -103,6 +103,15 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontFamily: 'Montserrat-regular',
     fontSize: 13,
+    color: 'white'
+  },
+  profileBioPhone: {
+    marginLeft: '5%',
+    marginTop: '2%',
+    marginBottom: '6%',
+    fontWeight: 'normal',
+    fontFamily: 'Montserrat-regular',
+    fontSize: 18,
     color: 'white'
   }
 })

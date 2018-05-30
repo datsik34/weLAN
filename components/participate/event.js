@@ -21,26 +21,16 @@ class Event extends React.Component {
         height='85%'
         borderRadius={5}
         >
-
         <View style={Styles.headerModal}>
-          <Icon
-            name='close'
-            size={20}
-            color='black'
-            width={window.height}
-            onPress={this.props.onClickCloseEvent}
-          />
+          <Icon name='close' size={20} color='black' width={window.height} onPress={this.props.onClickCloseEvent}/>
         </View>
-
         <ScrollView >
           <View style={Styles.imgLanContainer}>
             <Image style={Styles.imgLan} source={require('../../assets/images/games/wallpaper/test.jpg')}/>
           </View>
-
           <Text style={Styles.subTitle}>DÉCOUVREZ LA LAN ...</Text>
           <Text style={Styles.titleLan}>{this.props.titleLan}</Text>
           <Text style={Styles.descLan}>{this.props.description}</Text>
-
           <View style={Styles.infoLanContainer}>
             <View style={Styles.infoLan}>
               <View>
@@ -48,37 +38,30 @@ class Event extends React.Component {
               </View>
               <Text style={Styles.moreInfosLan}>Organisée par : {this.props.author}</Text>
             </View>
-
-
             <View style={Styles.infoLan}>
               <View>
                 <Icon name='account-box' color='#008b6b' />
               </View>
               <Text style={Styles.moreInfosLan}>{this.props.maxPeople} pers. max</Text>
             </View>
-
             <View style={Styles.infoLan}>
               <View>
                 <Icon name='date-range' color='#008b6b' />
               </View>
               <Text style={Styles.moreInfosLan}>{this.props.date}</Text>
             </View>
-
             <View style={Styles.infoLan}>
               <View>
                 <Icon name='place' color='#008b6b' />
               </View>
               <Text style={Styles.moreInfosLan}>{this.props.address}</Text>
             </View>
-
-
             <View style={Styles.infoLan}>
               <View>
                 <Icon name='cake' color='#008b6b' />
               </View>
               <Text style={Styles.moreInfosLan}>{this.props.minAge} - {this.props.maxAge} ans</Text>
             </View>
-
             <View style={Styles.infoLan}>
               <View>
                 <Icon name='smoking-rooms' color='#008b6b' />
@@ -86,7 +69,6 @@ class Event extends React.Component {
               <Text style={Styles.moreInfosLan}>{smokerInfo}</Text>
             </View>
           </View>
-
           <Button
             title='Participer'
             titleStyle={{ fontFamily: 'Montserrat-Bold', fontSize: 14, color: '#ffffff'}}
@@ -94,7 +76,6 @@ class Event extends React.Component {
             containerStyle={{ marginTop: 20 }}
           />
         </ScrollView>
-
       </Overlay>
     )
   }

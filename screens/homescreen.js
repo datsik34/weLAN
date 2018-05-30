@@ -27,7 +27,7 @@ export default class HomeScreen extends React.Component {
   _login = () => this.props.navigation.navigate('App');
   _signup = () => console.log('click signup');
 
-//fonction Switch Login/SignUp
+  //fonction Switch Login/SignUp
   _toggleLogin = () => this.setState({ showingLogin: true })
   _toggleSignUp = () => this.setState({ showingLogin: false })
 
@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
   containerVideo: {
     flex:1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: 'white'
   },
   containerLogo: {
     flex: 1.4,

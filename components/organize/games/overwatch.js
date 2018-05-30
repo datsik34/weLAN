@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 export default class OverWatch extends React.Component {
   render() {
@@ -15,7 +15,6 @@ export default class OverWatch extends React.Component {
           style={styles.logoImage}
         />
       </TouchableOpacity>
-
     );
   }
 }

@@ -15,7 +15,7 @@ import PlaceComponent from '../components/organize/place';
 import OptionsComponent from '../components/organize/options';
 import SummaryComponent from '../components/organize/summary';
 
-//style du header de l'app
+//style du header de l'app (doit rester en haut)
 const stylesHeader = StyleSheet.create({
   logo: {
     width: 55,
@@ -37,8 +37,8 @@ const AppStack = createStackNavigator(
     Summary: SummaryComponent
   },
   {
-    initialRouteName: 'Profile',
 
+    initialRouteName: 'Profile',
     //Customization du header de l'app sur tous les écrans de AppStack
     navigationOptions: {
       headerLeft: (<Image source={require('../assets/images/resources/logo.svg.png')} style={stylesHeader.logo}/>),

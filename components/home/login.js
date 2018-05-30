@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   login: {
     width: 300,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   inputStyle: {
     color: 'white',
