@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text, ScrollView, Image } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { Input, Button, Divider } from 'react-native-elements';
 
 import ProfileEvent from './profileevent.js';
@@ -16,16 +16,18 @@ let initials = (user.firstname[0] + user.lastname[0]).toUpperCase();
 
 export default class ProfileUser extends React.Component {
 
+  _uploadProfilePicture = () => console.log('click avatar');
+
   render() {
     return (
       <ScrollView style={styles.container}>
         <Divider style={styles.divider}/>
         <View style={styles.containerRow}>
-          <View style={styles.avatar}>
+          <TouchableOpacity style={styles.avatar} onPress={this._uploadProfilePicture}>
             <View style={styles.initialsContainer}>
               <Text style={styles.avatarText}>{initials}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
           <Text style={styles.profileTitle}>{user.username}</Text>
         </View>
         <Divider style={styles.divider}/>
