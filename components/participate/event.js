@@ -48,7 +48,7 @@ class Event extends React.Component {
               <View>
                 <Icon name='date-range' color='#008b6b' />
               </View>
-              <Text style={Styles.moreInfosLan}>{this.props.date}</Text>
+              <Text style={Styles.moreInfosLan}>{this.props.startDate}  /  {this.props.endDate}</Text>
             </View>
             <View style={Styles.infoLan}>
               <View>
@@ -96,7 +96,8 @@ function mapStateToProps(state){
     author: state.eventModal.author,
     description: state.eventModal.description,
     maxPeople: state.eventModal.maxPeople,
-    date: state.eventModal.date,
+    startDate: state.eventModal.startDate,
+    endDate: state.eventModal.endDate,
     address: state.eventModal.address,
     minAge: state.eventModal.minAge,
     maxAge: state.eventModal.maxAge,

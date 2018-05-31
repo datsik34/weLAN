@@ -3,56 +3,71 @@ import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'rea
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
-const event = [
-  {
-    author: 'Truc',
-    titleLan: 'Nom de la lan',
-    description: 'Description de la lan. Lorem ipsum dolor sit amet, dolor sit amet ...',
-    maxPeople: 6,
-    date: '12.06.18  -  15H / 17H',
-    address: '12 rue de la paix 69000 LYON',
-    minAge: 18,
-    maxAge: 30,
-    smoker: false
-  },
-  {
-    author: 'Bidule',
-    titleLan: 'Nom de la lan 2',
-    description: 'Description de la lan. Lorem ipsum dolor sit amet, dolor sit amet ...',
-    maxPeople: 4,
-    date: '12.06.18  -  15H / 17H',
-    address: '24 rue Victor Hugo 69000 Lyon',
-    minAge: 25,
-    maxAge: 35,
-    smoker: true
-  }
-];
+let event = [];
+
+
+
 
 class LanCard extends React.Component {
+
+  constructor(){
+    super();
+    this.state = { event: [] }
+  }
+
+  componentDidMount(){
+    let array = ['start', 'end'];
+
+    fetch('https://welan-server.herokuapp.com/event/locate')
+    .then( response => response.json() )
+    .then ( data => {
+      // Début - Change le format des dates
+      data.availableEvent.map( (e, i) => {
+        let elements = {
+          start: null,
+          end: null
+        }
+        for (let el of array) {
+          elements[el] = JSON.stringify(e.dates[el]).slice(1, -1).split(/"|-|T|:/);
+          elements[el] = `${elements[el][2]}.${elements[el][1]}.${elements[el][0]} - ${elements[el][3]}h${elements[el][4]}`;
+        }
+        e.dates = elements;
+      })
+      // fin
+
+      this.setState({ event: data })
+    });
+  }
+
   render() {
-    var eventCard = event.map((e, i) => {
-      return(
-        <TouchableOpacity key={i} style={Styles.cardContainer} onPress={(indice) => this.props.onClickOpenEvent(i)}>
-          <View style={Styles.imgLanContainer}>
-            <Image style={Styles.imgLan} source={require('../../assets/images/games/wallpaper/test.jpg')}/>
-          </View>
-          <View style={Styles.descContainer}>
-            <Text style={Styles.authorLan}>{e.author} ORGANISE LA LAN </Text>
-            <Text style={Styles.titleLan}>{e.titleLan}</Text>
-            <Text style={Styles.descLan}>{e.description}</Text>
-            <View style={Styles.moreInfosLanContainer}>
-              <Icon name='account-box' color='#008b6b' iconStyle={{fontSize: 16}}/>
-              <Text style={Styles.moreInfosLan}>{e.maxPeople} PERS. MAX</Text>
-            </View>
-            <View style={Styles.moreInfosLanContainer}>
-              <Icon name='date-range' color='#008b6b' iconStyle={{fontSize: 16}}/>
-              <Text style={Styles.moreInfosLan}>{e.date}</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-      )
+
+      if( this.state.event.availableEvent ){
+      event = this.state.event.availableEvent;
+
+        var eventCard = this.state.event.availableEvent.map((e, i) => {
+          return(
+            <TouchableOpacity key={i} style={Styles.cardContainer} onPress={(indice) => this.props.onClickOpenEvent(i)}>
+              <View style={Styles.imgLanContainer}>
+                <Image style={Styles.imgLan} source={require('../../assets/images/games/wallpaper/test.jpg')}/>
+              </View>
+              <View style={Styles.descContainer}>
+                <Text style={Styles.authorLan}>{e.author.username} ORGANISE LA LAN </Text>
+                <Text style={Styles.titleLan}>{e.info.event_name}</Text>
+                <Text style={Styles.descLan}>{e.info.description}</Text>
+                <View style={Styles.moreInfosLanContainer}>
+                  <Icon name='account-box' color='#008b6b' iconStyle={{fontSize: 16}}/>
+                  <Text style={Styles.moreInfosLan}>{e.info.participants.quantity.max} PERS. MAX</Text>
+                </View>
+                <View style={Styles.moreInfosLanContainer}>
+                  <Icon name='date-range' color='#008b6b' iconStyle={{fontSize: 16}}/>
+                  <Text style={Styles.moreInfosLan}>{e.dates.start}  /  {e.dates.end}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          )
+        }
+      );
     }
-  );
 
     return(
     <ScrollView horizontal={true}>
@@ -64,26 +79,28 @@ class LanCard extends React.Component {
   }
 };
 
-function mapDispatshToProps(dispatch){
+
+function mapDispatchToProps(dispatch){
   return{
     onClickOpenEvent: function(indice){
       dispatch({
         type: 'openEventPopup',
-        titleLan: event[indice].titleLan,
-        author: event[indice].author,
-        description: event[indice].description,
-        maxPeople: event[indice].maxPeople,
-        date: event[indice].date,
-        address: event[indice].address,
-        minAge: event[indice].minAge,
-        maxAge: event[indice].maxAge,
-        smoker: event[indice].smoker
+        titleLan: event[indice].info.event_name,
+        author: event[indice].author.username,
+        description: event[indice].info.description,
+        maxPeople: event[indice].info.participants.quantity.max,
+        startDate: event[indice].dates.start,
+        endDate: event[indice].dates.end,
+        address: event[indice].location,
+        minAge: event[indice].info.age.min,
+        maxAge: event[indice].info.age.max,
+        smoker: event[indice].info.smoking
      })
     }
   }
 }
+export default connect(null, mapDispatchToProps)(LanCard);
 
-export default connect(null, mapDispatshToProps)(LanCard);
 
 const Styles = StyleSheet.create({
   listCardContainer: {

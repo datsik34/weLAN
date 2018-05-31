@@ -1,4 +1,4 @@
-export default function eventModal (state={ eventIsSelected: false, titleLan: null, author: null, description: null, maxPeople : null, date: null, address: null, minAge: null, maxAge: null, smoker: null} , action){
+export default function eventModal (state={ eventIsSelected: false, titleLan: null, author: null, description: null, maxPeople : null, startDate: null, endDate: null , address: null, minAge: null, maxAge: null, smoker: null} , action){
 
   if(action.type==='openEventPopup'){
     return { eventIsSelected: true,
@@ -6,7 +6,8 @@ export default function eventModal (state={ eventIsSelected: false, titleLan: nu
       author: action.author,
       description: action.description,
       maxPeople: action.maxPeople,
-      date: action.date,
+      startDate: action.startDate,
+      endDate: action.endDate,
       address: action.address,
       minAge: action.minAge,
       maxAge: action.maxAge,
@@ -19,7 +20,8 @@ export default function eventModal (state={ eventIsSelected: false, titleLan: nu
       author: null,
       description: null,
       maxPeople: null,
-      date: null,
+      startDate: null,
+      endDate: null,
       address: null,
       minAge: null,
       maxAge: null,
