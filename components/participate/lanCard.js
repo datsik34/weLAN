@@ -5,9 +5,6 @@ import { connect } from 'react-redux';
 
 let event = [];
 
-
-
-
 class LanCard extends React.Component {
 
   constructor(){
@@ -85,6 +82,7 @@ function mapDispatchToProps(dispatch){
     onClickOpenEvent: function(indice){
       dispatch({
         type: 'openEventPopup',
+        idLan: event[indice]._id,
         titleLan: event[indice].info.event_name,
         author: event[indice].author.username,
         description: event[indice].info.description,

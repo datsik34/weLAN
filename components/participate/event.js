@@ -4,6 +4,32 @@ import { Overlay, Icon, Button, Modal } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 class Event extends React.Component {
+
+  _participeEvent = () => {
+
+    // Ajoute un nouveau participant à la LAN selectionnéelse
+    //  ATTENTION  -  PENSER À CHANGER LE user_id
+    // fetch('https://welan-server.herokuapp.com/event/participate', {
+    //    method: 'POST',
+    //    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+    //    body: '_id='+this.props.idLan+'&user_id=5b0d7f22c57fbb052c61f807'
+    // })
+    // .then( response => response.json() )
+    // .then( data => {
+    //   console.log(data.success)
+    //
+    //   if( data.success ) {
+    //
+    //   }
+    //
+    // })
+    // .then( error => console.log('Request failed', error) )
+
+
+    this.props.navigation.navigate('Profile');
+
+  }
+
   render(){
 
     var smokerInfo;
@@ -74,6 +100,7 @@ class Event extends React.Component {
             titleStyle={{ fontFamily: 'Montserrat-Bold', fontSize: 14, color: '#ffffff'}}
             buttonStyle={{ backgroundColor: '#21c065', borderRadius: 5 }}
             containerStyle={{ marginTop: 20 }}
+            onPress={this._participeEvent}
           />
         </ScrollView>
       </Overlay>
@@ -92,6 +119,7 @@ function mapDispatshToProps(dispatch){
 function mapStateToProps(state){
   return{
     eventIsSelected: state.eventModal.eventIsSelected,
+    idLan: state.eventModal.idLan,
     titleLan: state.eventModal.titleLan,
     author: state.eventModal.author,
     description: state.eventModal.description,
