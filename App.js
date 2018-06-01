@@ -8,9 +8,11 @@ import {Font} from 'expo';
 import RootNavigation from './navigation/rootnavigation';
 
 // R E D U C E R S
+import { reducer as formReducer } from 'redux-form';
 import filter from './reducers/filter.reducer.js';
 import eventModal from './reducers/eventmodal.reducer.js';
-var globalReducers = combineReducers({ filter, eventModal });
+import log from './reducers/log.reducer.js';
+var globalReducers = combineReducers({ filter, eventModal, form: formReducer , log});
 const store = createStore(globalReducers);
 
 export default class App extends React.Component {

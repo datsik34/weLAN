@@ -61,7 +61,8 @@ export default class ProfileEvent extends React.Component {
 
 const styles = StyleSheet.create({
   cont: {
-    marginTop: 10
+    marginTop: 10,
+    marginRight: 10
   },
   container: {
     flex: 1,

@@ -53,8 +53,8 @@ class ParticipateScreen extends React.Component {
         <View style={Styles.lanListContainer}>
           <LanCard/>
         </View>
-        <Event />
-        <Filter />
+        <Event/>
+        <Filter/>
       </View>
     );
   }

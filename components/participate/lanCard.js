@@ -71,7 +71,7 @@ class LanCard extends React.Component {
 
     return(
     <ScrollView horizontal={true}>
-      <View style={Styles.listCardContainer} >
+      <View style={Styles.listCardContainer}>
         {eventCard}
       </View>
     </ScrollView>
