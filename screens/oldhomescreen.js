@@ -2,7 +2,6 @@ import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import { Button } from 'react-native-elements';
 import { Video } from 'expo';
-import { connect } from 'react-redux';
 
 import Login from '../components/home/login.js'
 import SignUp from '../components/home/signup.js'
@@ -15,7 +14,7 @@ function renderIf(condition, content) {
   }
 }
 
-class HomeScreen extends React.Component {
+export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
@@ -24,10 +23,9 @@ class HomeScreen extends React.Component {
     this.state = { showingLogin: true }
   }
 
+  //fonctions Connexion/Création de compte
+  _login = () => this.props.navigation.navigate('App');
   _signup = () => console.log('click signup');
-
-  _loginSubmit = (value) => console.log(value);
-  _signupSubmit = (value) => console.log(value);
 
   //fonction Switch Login/SignUp
   _toggleLogin = () => this.setState({ showingLogin: true })
@@ -41,7 +39,7 @@ class HomeScreen extends React.Component {
           rate={1}
           isMuted={true}
           resizeMode="cover"
-          // shouldPlay
+          shouldPlay
           isLooping
           style={styles.video}
         />
@@ -53,27 +51,13 @@ class HomeScreen extends React.Component {
             <Button titleStyle={styles.btnTitle} onPress={this._toggleLogin} clear={true} title='Login'/>
             <Button titleStyle={styles.btnTitle} onPress={this._toggleSignUp} clear={true} title='Sign Up'/>
           </View>
-          {renderIf(this.state.showingLogin, <Login onSubmit={(value) => this.props._login(value)}/>)}
+          {renderIf(this.state.showingLogin, <Login _login={this._login}/>)}
           {renderIf(!this.state.showingLogin, <SignUp _signup={this._signup}/>)}
         </View>
       </View>
     )
   }
 }
-
-function mapDispatchToProps(dispatch){
-  return{
-    _login: function(value){
-      dispatch({
-        type: 'login',
-        email: value.email,
-        pwd: value.pwd
-      })
-    }
-  }
-}
-
-export default connect(null, mapDispatchToProps)(HomeScreen)
 
 const styles = StyleSheet.create({
   containerVideo: {

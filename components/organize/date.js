@@ -31,12 +31,13 @@ export default class DateComponent extends React.Component {
       isEndDateTimePickerVisible: false,
     }
   }
+
   //Start DateTimePicker
   _showStartDateTimePicker = () => this.setState({ isStartDateTimePickerVisible: true });
   _hideStartDateTimePicker = () => this.setState({ isStartDateTimePickerVisible: false });
   _handleStartDatePicked = (date) => {
     let formatedDate = date.toLocaleDateString()
-    let formatedTime = (date.getHours() + " : " + date.getMinutes());
+    let formatedTime = ((date.getHours()<10?'0':'') + date.getHours() + " : " + (date.getMinutes()<10?'0':'') + date.getMinutes());
     this.setState({ startDate: formatedDate, startTime: formatedTime})
     this._hideStartDateTimePicker();
   };
@@ -47,7 +48,7 @@ export default class DateComponent extends React.Component {
   _handleEndDatePicked = (date) => {
 
     let formatedDate = date.toLocaleDateString()
-    let formatedTime = (date.getHours() + " : " + date.getMinutes());
+    let formatedTime = ((date.getHours()<10?'0':'') + date.getHours() + " : " + (date.getMinutes()<10?'0':'') + date.getMinutes());
     this.setState({ endDate: formatedDate, endTime: formatedTime})
     this._hideEndDateTimePicker();
   };

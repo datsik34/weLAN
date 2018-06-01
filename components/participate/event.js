@@ -24,7 +24,7 @@ class Event extends React.Component {
         <View style={Styles.headerModal}>
           <Icon name='close' size={20} color='black' width={window.height} onPress={this.props.onClickCloseEvent}/>
         </View>
-        <ScrollView >
+        <ScrollView>
           <View style={Styles.imgLanContainer}>
             <Image style={Styles.imgLan} source={require('../../assets/images/games/wallpaper/test.jpg')}/>
           </View>
