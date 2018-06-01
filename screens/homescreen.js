@@ -24,6 +24,7 @@ class HomeScreen extends React.Component {
     this.state = { showingLogin: true }
   }
 
+  goToLogin = () => this.props.navigation.navigate('App');
   _signup = () => console.log('click signup');
 
   _loginSubmit = (value) => console.log(value);
@@ -53,7 +54,7 @@ class HomeScreen extends React.Component {
             <Button titleStyle={styles.btnTitle} onPress={this._toggleLogin} clear={true} title='Login'/>
             <Button titleStyle={styles.btnTitle} onPress={this._toggleSignUp} clear={true} title='Sign Up'/>
           </View>
-          {renderIf(this.state.showingLogin, <Login onSubmit={(value) => this.props._login(value)}/>)}
+          {renderIf(this.state.showingLogin, <Login onSubmit={(value) => this.props._login.bind(this)(value)}/>)}
           {renderIf(!this.state.showingLogin, <SignUp _signup={this._signup}/>)}
         </View>
       </View>
@@ -61,14 +62,28 @@ class HomeScreen extends React.Component {
   }
 }
 
-function mapDispatchToProps(dispatch){
-  return{
-    _login: function(value){
-      dispatch({
-        type: 'login',
-        email: value.email,
-        pwd: value.pwd
+function mapDispatchToProps(dispatch) {
+  return {
+    _login: function(value) {
+      fetch('https://welan-server.herokuapp.com/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `email=${value.email}&password=${value.pwd}`
       })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          dispatch({
+            type: 'login',
+            user: data.user
+          });
+          this.goToLogin();
+        } else {
+          throw new Error("aerzz")
+        }
+      }).catch(e => {
+        console.log(e);
+      });
     }
   }
 }
