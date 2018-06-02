@@ -3,16 +3,32 @@ import { StyleSheet, View, TextInput } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { reduxForm, Field } from "redux-form";
 
-function textInput(props) {
+function textInputEmail(props) {
   const { input } = props;
-  return (
-      <Input
-        onChangeText={input.onChange}
-        value={input.value}
-        inputContainerStyle={styles.inputContStyle}
-        inputStyle={styles.inputStyle}
-        placeholderTextColor={'white'}
-      />
+  return(
+    <Input
+      onChangeText={input.onChange}
+      value={input.value}
+      inputContainerStyle={styles.inputContStyle}
+      inputStyle={styles.inputStyle}
+      placeholderTextColor='white'
+      placeholder='EMAIL'
+      type="email"
+    />
+  );
+}
+function textInputPwd(props) {
+  const { input } = props;
+  return(
+    <Input
+      onChangeText={input.onChange}
+      value={input.value}
+      inputContainerStyle={styles.inputContStyle}
+      inputStyle={styles.inputStyle}
+      placeholderTextColor='white'
+      placeholder='PASSWORD'
+      password={true}
+    />
   );
 }
 
@@ -20,8 +36,8 @@ class LoginForm extends React.Component {
   render() {
     return (
       <View style={styles.login}>
-        <Field name="email" component={textInput} placeholder='EMAIL'/>
-        <Field name="pwd" component={textInput} placeholder='PASSWORD'/>
+        <Field name="email" component={textInputEmail}/>
+        <Field name="pwd" component={textInputPwd}/>
         <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColor} titleStyle={styles.btnTitle} onPress={this.props.handleSubmit} title='LOGIN'/>
       </View>
     )
@@ -29,26 +45,7 @@ class LoginForm extends React.Component {
 }
 export default reduxForm({ form: 'login' })(LoginForm)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
   login: {
     width: 300,
     alignItems: 'center'

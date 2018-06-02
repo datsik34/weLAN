@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, CheckBox } from 'react-native-elements';
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 import CsGo from './games/csgo.js'
@@ -24,16 +24,28 @@ export default class GamesComponent extends React.Component {
         <ScrollView>
           <Grid>
             <Row style={styles.rowgrid}>
-              <Col><Fortnite/></Col>
-              <Col><Sc2/></Col>
+              <Col>
+                <Fortnite/>
+              </Col>
+              <Col>
+                <Sc2/>
+              </Col>
             </Row>
             <Row style={styles.rowgrid}>
-              <Col><CsGo/></Col>
-              <Col><LoL/></Col>
+              <Col>
+                <CsGo/>
+              </Col>
+              <Col>
+                <LoL/>
+              </Col>
             </Row>
             <Row style={styles.rowgrid}>
-              <Col><OverWatch/></Col>
-              <Col><Left4Dead2/></Col>
+              <Col>
+                <Left4Dead2/>
+              </Col>
+              <Col>
+                <OverWatch/>
+              </Col>
             </Row>
           </Grid>
         </ScrollView>

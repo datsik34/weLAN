@@ -4,7 +4,7 @@ import { StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 export default class NintendoSwitch extends React.Component {
   render() {
     return (
-      <TouchableOpacity style={styles.backgroundImage}>
+      <TouchableOpacity style={styles.backgroundImage} onPress={this.props._toggleCheck}>
         <Image
           source={require('../../../assets/images/platforms/nintendoswitch.jpg')}
           style={styles.backgroundImage}

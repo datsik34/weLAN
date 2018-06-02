@@ -1,20 +1,29 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, View} from 'react-native';
+import { CheckBox } from 'react-native-elements';
 
 export default class OverWatch extends React.Component {
+  constructor(){
+    super();
+    this.state = {checked: false}
+  }
+  _toggleCheck = () => this.setState({ checked: !this.state.checked})
   render() {
     return (
-      <TouchableOpacity style={styles.backgroundImage}>
-        <Image
-          source={require('../../../assets/images/games/wallpaper/overwatch.jpg')}
-          style={styles.backgroundImage}
-          blurRadius={0.5}
-        />
-        <Image
-          source={require('../../../assets/images/games/logo/overwatch-logo.png')}
-          style={styles.logoImage}
-        />
-      </TouchableOpacity>
+      <View style={styles.flex}>
+        <CheckBox checkedColor={'green'} checked={this.state.checked} containerStyle={styles.checkbox} right={true} onPress={this._toggleCheck}/>
+        <TouchableOpacity style={styles.backgroundImage} onPress={this._toggleCheck}>
+          <Image
+            source={require('../../../assets/images/games/wallpaper/overwatch.jpg')}
+            style={styles.backgroundImage}
+            blurRadius={0.5}
+          />
+          <Image
+            source={require('../../../assets/images/games/logo/overwatch-logo.png')}
+            style={styles.logoImage}
+          />
+        </TouchableOpacity>
+      </View>
     );
   }
 }
@@ -34,5 +43,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     justifyContent: 'center',
     resizeMode: 'center'
+  },
+  flex: {
+    flex: 1
+  },
+  checkbox: {
+    zIndex: 1,
   }
 })

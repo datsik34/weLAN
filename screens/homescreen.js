@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Video } from 'expo';
 import { connect } from 'react-redux';
@@ -25,10 +25,6 @@ class HomeScreen extends React.Component {
   }
 
   goToLogin = () => this.props.navigation.navigate('App');
-  _signup = () => console.log('click signup');
-
-  _loginSubmit = (value) => console.log(value);
-  _signupSubmit = (value) => console.log(value);
 
   //fonction Switch Login/SignUp
   _toggleLogin = () => this.setState({ showingLogin: true })
@@ -42,7 +38,7 @@ class HomeScreen extends React.Component {
           rate={1}
           isMuted={true}
           resizeMode="cover"
-          // shouldPlay
+          shouldPlay
           isLooping
           style={styles.video}
         />
@@ -55,7 +51,7 @@ class HomeScreen extends React.Component {
             <Button titleStyle={styles.btnTitle} onPress={this._toggleSignUp} clear={true} title='Sign Up'/>
           </View>
           {renderIf(this.state.showingLogin, <Login onSubmit={(value) => this.props._login.bind(this)(value)}/>)}
-          {renderIf(!this.state.showingLogin, <SignUp _signup={this._signup}/>)}
+          {renderIf(!this.state.showingLogin, <SignUp onSubmit={(value) => this.props._signup.bind(this)(value)}/>)}
         </View>
       </View>
     )
@@ -65,21 +61,43 @@ class HomeScreen extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     _login: function(value) {
-      fetch('https://welan-server.herokuapp.com/login', {
+      this.goToLogin();
+      // fetch('https://welan-server.herokuapp.com/login', {
+      //   method: 'POST',
+      //   headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      //   body: `email=${value.email}&password=${value.pwd}`
+      // })
+      // .then(response => response.json())
+      // .then(data => {
+      //   if (data.success) {
+      //     dispatch({
+      //       type: 'login',
+      //       user: data.user
+      //     });
+      //     this.goToLogin();
+      //   } else {
+      //     throw new Error("can't loggin")
+      //   }
+      // }).catch(e => {
+      //   console.log(e);
+      // });
+    },
+    _signup : function(value) {
+      fetch('https://welan-server.herokuapp.com/signup', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: `email=${value.email}&password=${value.pwd}`
+        body: `usename=${value.nickname}&email=${value.email}&password=${value.pwd}&birthday=${value.dateofbirth}`
       })
       .then(response => response.json())
       .then(data => {
         if (data.success) {
           dispatch({
-            type: 'login',
+            type: 'signup',
             user: data.user
           });
           this.goToLogin();
         } else {
-          throw new Error("aerzz")
+          throw new Error("can't loggin")
         }
       }).catch(e => {
         console.log(e);
@@ -95,7 +113,7 @@ const styles = StyleSheet.create({
     flex:1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'black'
   },
   containerLogo: {
     flex: 1.4,

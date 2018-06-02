@@ -1,21 +1,78 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Input, Button } from 'react-native-elements';
+import { reduxForm, Field } from "redux-form";
 
-export default class SignUp extends React.Component {
+function textInputNickname(props) {
+  const { input } = props;
+  return (
+      <Input
+        onChangeText={input.onChange}
+        value={input.value}
+        inputContainerStyle={styles.inputContStyle}
+        inputStyle={styles.inputStyle}
+        placeholderTextColor={'white'}
+        placeholder='NICKNAME'
+      />
+  );
+}
 
+function textInputEmail(props) {
+  const { input } = props;
+  return (
+      <Input
+        onChangeText={input.onChange}
+        value={input.value}
+        inputContainerStyle={styles.inputContStyle}
+        inputStyle={styles.inputStyle}
+        placeholderTextColor={'white'}
+        placeholder='EMAIL'
+      />
+  );
+}
+
+function textInputPwd(props) {
+  const { input } = props;
+  return (
+      <Input
+        onChangeText={input.onChange}
+        value={input.value}
+        inputContainerStyle={styles.inputContStyle}
+        inputStyle={styles.inputStyle}
+        placeholderTextColor={'white'}
+        placeholder='PASSWORD'
+      />
+  );
+}
+
+function textInputDoB(props) {
+  const { input } = props;
+  return (
+      <Input
+        onChangeText={input.onChange}
+        value={input.value}
+        inputContainerStyle={styles.inputContStyle}
+        inputStyle={styles.inputStyle}
+        placeholderTextColor={'white'}
+        placeholder='DAFE OF BIRTH'
+      />
+  );
+}
+
+class SignUpForm extends React.Component {
   render() {
     return (
       <View style={styles.login}>
-        <Input inputContainerStyle={styles.inputContStyle} inputStyle={styles.inputStyle} placeholderTextColor={'white'} placeholder='NICKNAME'/>
-        <Input inputContainerStyle={styles.inputContStyle} inputStyle={styles.inputStyle} placeholderTextColor={'white'} placeholder='EMAIL' keyboardType={'email-address'}/>
-        <Input inputContainerStyle={styles.inputContStyle} inputStyle={styles.inputStyle} placeholderTextColor={'white'} placeholder='PASSWORD' secureTextEntry={true}/>
-        <Input inputContainerStyle={styles.inputContStyle} inputStyle={styles.inputStyle} placeholderTextColor={'white'} placeholder='DATEOFBIRTH'/>
-        <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColor} titleStyle={styles.btnTitle} onPress={this.props._signup} title='SIGNUP'/>
+        <Field name="nickname" component={textInputNickname}/>
+        <Field name="email" component={textInputEmail}/>
+        <Field name="pwd" component={textInputPwd}/>
+        <Field name="dateofbirth" component={textInputDoB}/>
+        <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColor} titleStyle={styles.btnTitle} onPress={this.props.handleSubmit} title='SIGNUP'/>
       </View>
     )
   }
 }
+export default reduxForm({ form: 'signup' })(SignUpForm)
 
 const styles = StyleSheet.create({
   login: {
