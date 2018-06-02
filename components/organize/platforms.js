@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import { CheckBox } from 'react-native-elements';
 
 import Pc from './platforms/pc';
 import Ps4 from './platforms/ps4';
@@ -12,6 +13,46 @@ export default class PlatformsComponent extends React.Component {
   static navigationOptions = {
     title: '1/5 Choisis ta plateforme'
   };
+  constructor(){
+    super();
+    this.state = {
+      PcChecked: false,
+      Ps4Checked: false,
+      XboxOneChecked: false,
+      SwitchChecked: false
+     }
+  }
+  _togglePcCheck = () => {
+    if (!this.state.Ps4Checked && !this.state.XboxOneChecked && !this.state.SwitchChecked) {
+      this.setState({ PcChecked: !this.state.PcChecked})
+    }
+    else {
+    }
+  }
+
+  _togglePs4Check = () => {
+    if (!this.state.PcChecked && !this.state.XboxOneChecked && !this.state.SwitchChecked) {
+      this.setState({ Ps4Checked: !this.state.Ps4Checked})
+    }
+    else {
+    }
+  }
+
+  _toggleXboxOneCheck = () => {
+    if (!this.state.Ps4Checked && !this.state.PcChecked && !this.state.SwitchChecked) {
+      this.setState({ XboxOneChecked: !this.state.XboxOneChecked})
+    }
+    else {
+    }
+  }
+
+  _toggleSwitchCheck = () => {
+    if (!this.state.Ps4Checked && !this.state.XboxOneChecked && !this.state.PcChecked) {
+      this.setState({ SwitchChecked: !this.state.SwitchChecked})
+    }
+    else {
+    }
+  }
 
   //Navigation
   _goToGames = () => this.props.navigation.navigate('Games');
@@ -23,12 +64,24 @@ export default class PlatformsComponent extends React.Component {
         <ScrollView>
           <Grid>
             <Row style={styles.rowgrid}>
-              <Col><Pc/></Col>
-              <Col><Ps4/></Col>
+              <Col style={ (this.state.Ps4Checked || this.state.XboxOneChecked || this.state.SwitchChecked) ? styles.unchecked : null}>
+                <CheckBox checkedColor={'green'} checked={this.state.PcChecked} onPress={this._togglePcCheck} containerStyle={styles.checkbox} right={true}/>
+                <Pc _toggleCheck={this._togglePcCheck}/>
+              </Col>
+              <Col style={ (this.state.PcChecked || this.state.XboxOneChecked || this.state.SwitchChecked) ? styles.unchecked : null}>
+                <CheckBox checkedColor={'green'} checked={this.state.Ps4Checked} onPress={this._togglePs4Check} containerStyle={styles.checkbox} right={true}/>
+                <Ps4 _toggleCheck={this._togglePs4Check}/>
+              </Col>
             </Row>
             <Row style={styles.rowgrid}>
-              <Col><XboxOne/></Col>
-              <Col><NintendoSwitch/></Col>
+              <Col style={ (this.state.Ps4Checked || this.state.PcChecked || this.state.SwitchChecked) ? styles.unchecked : null}>
+                <CheckBox checkedColor={'green'} checked={this.state.XboxOneChecked} onPress={this._toggleXboxOneCheck} containerStyle={styles.checkbox} right={true}/>
+                <XboxOne _toggleCheck={this._toggleXboxOneCheck}/>
+              </Col>
+              <Col style={ (this.state.Ps4Checked || this.state.XboxOneChecked || this.state.PcChecked) ? styles.unchecked : null}>
+                <CheckBox checkedColor={'green'} checked={this.state.SwitchChecked} onPress={this._toggleSwitchCheck} containerStyle={styles.checkbox} right={true}/>
+                <NintendoSwitch _toggleCheck={this._toggleSwitchCheck}/>
+              </Col>
             </Row>
           </Grid>
         </ScrollView>
@@ -52,6 +105,9 @@ const styles = StyleSheet.create({
   rowgrid: {
     height: 200
   },
+  colCont: {
+    flex: 1
+  },
   btnTitle: {
     color: '#172533',
     fontFamily: 'Montserrat-regular',
@@ -73,5 +129,11 @@ const styles = StyleSheet.create({
   },
   btnContStyle: {
     width: '50%'
+  },
+  unchecked: {
+    opacity: .2
+  },
+  checkbox: {
+    zIndex: 1
   }
 })

@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Image, CheckBox, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 
 export default class XboxOne extends React.Component {
   render() {
     return (
-      <TouchableOpacity style={styles.backgroundImage}>
+      <TouchableOpacity style={styles.backgroundImage} onPress={this.props._toggleCheck}>
         <Image
           source={require('../../../assets/images/platforms/xboxone.jpg')}
           style={styles.backgroundImage}
