@@ -15,8 +15,14 @@ export default class GamesComponent extends React.Component {
     title: '2/5 Choisis ton jeu'
   };
 
+  constructor(){
+    super();
+    this.state = { gamesSelected: 0 }
+  }
   _goToDate = () => this.props.navigation.navigate('Date');
   _goBack = () => this.props.navigation.navigate('Platforms');
+  picked = () => this.setState({ gamesSelected: this.state.gamesSelected + 1})
+  unpicked = () => this.setState({ gamesSelected: this.state.gamesSelected - 1})
 
   render(){
     return(
@@ -25,32 +31,38 @@ export default class GamesComponent extends React.Component {
           <Grid>
             <Row style={styles.rowgrid}>
               <Col>
-                <Fortnite/>
+                <Fortnite picked={this.picked} unpicked={this.unpicked}/>
               </Col>
               <Col>
-                <Sc2/>
-              </Col>
-            </Row>
-            <Row style={styles.rowgrid}>
-              <Col>
-                <CsGo/>
-              </Col>
-              <Col>
-                <LoL/>
+                <Sc2 picked={this.picked} unpicked={this.unpicked}/>
               </Col>
             </Row>
             <Row style={styles.rowgrid}>
               <Col>
-                <Left4Dead2/>
+                <CsGo picked={this.picked} unpicked={this.unpicked}/>
               </Col>
               <Col>
-                <OverWatch/>
+                <LoL picked={this.picked} unpicked={this.unpicked}/>
+              </Col>
+            </Row>
+            <Row style={styles.rowgrid}>
+              <Col>
+                <Left4Dead2 picked={this.picked} unpicked={this.unpicked}/>
+              </Col>
+              <Col>
+                <OverWatch picked={this.picked} unpicked={this.unpicked}/>
               </Col>
             </Row>
           </Grid>
         </ScrollView>
         <View style={styles.contBtn}>
-          <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGreen} titleStyle={styles.btnStyle} onPress={this._goToDate} title='SUIVANT'/>
+          <Button
+            title='SUIVANT'
+            titleStyle={styles.btnStyle}
+            containerStyle={styles.btnContStyle}
+            buttonStyle={this.state.gamesSelected > 0 ? styles.btnColorGreen : styles.btnColorGrey}
+            onPress={this.state.gamesSelected > 0 ? this._goToDate : null}
+          />
           <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGrey} titleStyle={styles.btnStyle} onPress={this._goBack} title='RETOUR'/>
         </View>
       </View>
