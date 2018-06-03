@@ -29,25 +29,26 @@ export default class DateComponent extends React.Component {
       EndTime: null,
       isStartDateTimePickerVisible: false,
       isEndDateTimePickerVisible: false,
+      limitDate: null,
     }
   }
 
-  //Start DateTimePicker
+  //Start DateTimePicker functions
   _showStartDateTimePicker = () => this.setState({ isStartDateTimePickerVisible: true });
   _hideStartDateTimePicker = () => this.setState({ isStartDateTimePickerVisible: false });
   _handleStartDatePicked = (date) => {
-    let formatedDate = date.toLocaleDateString()
+    this.setState({limitDate: date})
+    let formatedDate = date.toLocaleDateString();
     let formatedTime = ((date.getHours()<10?'0':'') + date.getHours() + " : " + (date.getMinutes()<10?'0':'') + date.getMinutes());
     this.setState({ startDate: formatedDate, startTime: formatedTime})
     this._hideStartDateTimePicker();
   };
 
-  //End DateTimePicker
+  //End DateTimePicker functions
   _showEndDateTimePicker = () => this.setState({ isEndDateTimePickerVisible: true });
   _hideEndDateTimePicker = () => this.setState({ isEndDateTimePickerVisible: false });
   _handleEndDatePicked = (date) => {
-
-    let formatedDate = date.toLocaleDateString()
+    let formatedDate = date.toLocaleDateString();
     let formatedTime = ((date.getHours()<10?'0':'') + date.getHours() + " : " + (date.getMinutes()<10?'0':'') + date.getMinutes());
     this.setState({ endDate: formatedDate, endTime: formatedTime})
     this._hideEndDateTimePicker();
@@ -56,7 +57,7 @@ export default class DateComponent extends React.Component {
   render(){
     return(
       <View style={styles.container}>
-        <View style={styles.containerDate}>
+        <View style={styles.containerStartDate}>
           <View style={styles.contText}>
             <Text style={styles.text}>
               Du ...
@@ -72,14 +73,14 @@ export default class DateComponent extends React.Component {
               }
           </TouchableOpacity>
         </View>
-        <View style={styles.containerDate}>
+        <View style={styles.containerEndDate}>
           <View style={styles.contText}>
             <Text style={styles.text}>
               Au ...
             </Text>
           </View>
-            <TouchableOpacity style={styles.contDate} onPress={this._showEndDateTimePicker}>
-              {renderIf(!this.state.endDate, <Text style={styles.dateText}>Choisis ta date</Text>)}
+            <TouchableOpacity style={this.state.startDate ? styles.contDate : styles.contDateUnpicked} onPress={this.state.startDate ? this._showEndDateTimePicker : null}>
+              {renderIf(!this.state.endDate, <Text style={this.state.startDate ? styles.dateText : styles.dateTextUnpicked}>Choisis ta date</Text>)}
               {renderIf(this.state.endDate,
                 <View>
                   <Text style={styles.dateText}>{this.state.endDate}</Text>
@@ -88,12 +89,15 @@ export default class DateComponent extends React.Component {
               }
             </TouchableOpacity>
         </View>
+
           <DateTimePicker
             isVisible={this.state.isStartDateTimePickerVisible}
             onConfirm={this._handleStartDatePicked}
             onCancel={this._hideStartDateTimePicker}
             mode='datetime'
             datePickerModeAndroid='spinner'
+            cancelTextIOS='Annuler'
+            confirmTextIOS='Confirmer'
           />
           <DateTimePicker
             isVisible={this.state.isEndDateTimePickerVisible}
@@ -101,6 +105,9 @@ export default class DateComponent extends React.Component {
             onCancel={this._hideEndDateTimePicker}
             mode='datetime'
             datePickerModeAndroid='spinner'
+            cancelTextIOS='Annuler'
+            confirmTextIOS='Confirmer'
+            minimumDate={this.state.startTime != null ? this.state.limitDate : undefined}
           />
         <View style={styles.contBtn}>
           <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGreen} titleStyle={styles.btnStyle} onPress={this._goToPlace} title='SUIVANT'/>
@@ -116,10 +123,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#172533',
   },
-  containerDate: {
+  containerStartDate: {
     flex: 0.5,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  containerEndDate: {
+    flex: 0.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: -70
   },
   btnStyle: {
     color: '#172533',
@@ -163,11 +176,26 @@ const styles = StyleSheet.create({
     color: '#00b14c',
     textAlign: 'center'
   },
+  dateTextUnpicked: {
+    fontSize: 60,
+    fontWeight: 'normal',
+    fontFamily: 'Teko-Light',
+    color: '#008b6b',
+    textAlign: 'center'
+  },
   contDate: {
-    width: '95%',
+    width: '90%',
     height: '50%',
     borderRadius: 3,
     borderColor: '#00b14c',
+    borderWidth: 1,
+    justifyContent: 'center'
+  },
+  contDateUnpicked: {
+    width: '90%',
+    height: '50%',
+    borderRadius: 3,
+    borderColor: '#008b6b',
     borderWidth: 1,
     justifyContent: 'center'
   }
