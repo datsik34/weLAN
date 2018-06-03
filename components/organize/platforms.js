@@ -86,7 +86,13 @@ export default class PlatformsComponent extends React.Component {
           </Grid>
         </ScrollView>
         <View style={styles.contBtn}>
-          <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGreen} titleStyle={styles.btnTitle} onPress={this._goToGames} title='SUIVANT'/>
+          <Button
+            containerStyle={styles.btnContStyle}
+            titleStyle={styles.btnTitle}
+            buttonStyle={this.state.Ps4Checked || this.state.XboxOneChecked || this.state.PcChecked || this.state.SwitchChecked ? styles.btnColorGreen : styles.btnColorGrey}
+            onPress={this.state.Ps4Checked || this.state.XboxOneChecked || this.state.PcChecked || this.state.SwitchChecked ? this._goToGames : null}
+            title='SUIVANT'
+          />
           <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGrey} titleStyle={styles.btnTitle} onPress={this._goBack} title='RETOUR'/>
         </View>
       </View>

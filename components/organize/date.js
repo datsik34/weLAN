@@ -110,7 +110,13 @@ export default class DateComponent extends React.Component {
             minimumDate={this.state.startTime != null ? this.state.limitDate : undefined}
           />
         <View style={styles.contBtn}>
-          <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGreen} titleStyle={styles.btnStyle} onPress={this._goToPlace} title='SUIVANT'/>
+          <Button
+            title='SUIVANT'
+            titleStyle={styles.btnStyle}
+            containerStyle={styles.btnContStyle}
+            buttonStyle={this.state.endDate != null ? styles.btnColorGreen : styles.btnColorGrey}
+            onPress={this.state.endDate != null ? this._goToPlace : null}
+          />
           <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGrey} titleStyle={styles.btnStyle} onPress={this._goBack} title='RETOUR'/>
         </View>
       </View>
@@ -180,7 +186,7 @@ const styles = StyleSheet.create({
     fontSize: 60,
     fontWeight: 'normal',
     fontFamily: 'Teko-Light',
-    color: '#008b6b',
+    color: '#003b1b',
     textAlign: 'center'
   },
   contDate: {
@@ -195,7 +201,7 @@ const styles = StyleSheet.create({
     width: '90%',
     height: '50%',
     borderRadius: 3,
-    borderColor: '#008b6b',
+    borderColor: '#003b1b',
     borderWidth: 1,
     justifyContent: 'center'
   }

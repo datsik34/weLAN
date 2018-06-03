@@ -7,12 +7,23 @@ export default class CsGo extends React.Component {
     super();
     this.state = {checked: false}
   }
-  _toggleCheck = () => this.setState({ checked: !this.state.checked})
+  _toggleCheck = () => this.setState({ checked: !this.state.checked })
+
+  isPicked(){
+    if (!this.state.checked) {
+      this.setState({ checked: !this.state.checked });
+      this.props.picked();
+    } else {
+      this.setState({ checked: !this.state.checked });
+      this.props.unpicked();
+    }
+  }
+
   render() {
     return (
       <View style={styles.flex}>
-        <CheckBox checkedColor={'green'} checked={this.state.checked} containerStyle={styles.checkbox} right={true} onPress={this._toggleCheck}/>
-        <TouchableOpacity style={styles.backgroundImage} onPress={this._toggleCheck}>
+        <CheckBox right={true} checkedColor={'green'} checked={this.state.checked} containerStyle={styles.checkbox} onPress={this.isPicked.bind(this)}/>
+        <TouchableOpacity style={styles.backgroundImage} onPress={this.isPicked.bind(this)}>
           <Image
             source={require('../../../assets/images/games/wallpaper/csgo.jpg')}
             style={styles.backgroundImage}
