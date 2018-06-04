@@ -9,7 +9,7 @@ const user = {
   firstname: 'Franck',
   lastname: 'Martigne',
   description: 'Joueur vénère de SC2, bon à LoL et CS:GO. J\'aime bien jouer à Dota2 aussi. Bon délire général chaud pour des LAN\'s sur Lyon !! A+ sous l\'bus mdrr',
-  phone: '0607762282'
+  phone: '0807762282'
 }
 
 let initials = (user.firstname[0] + user.lastname[0]).toUpperCase();

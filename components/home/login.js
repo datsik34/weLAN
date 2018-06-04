@@ -27,7 +27,7 @@ function textInputPwd(props) {
       inputStyle={styles.inputStyle}
       placeholderTextColor='white'
       placeholder='PASSWORD'
-      password={true}
+      secureTextEntry={true}
     />
   );
 }

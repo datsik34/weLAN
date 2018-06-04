@@ -1,4 +1,19 @@
-export default function eventModal (state={ eventIsSelected: false, idLan: null, titleLan: null, author: null, description: null, maxPeople : null, startDate: null, endDate: null , address: null, minAge: null, maxAge: null, smoker: null} , action){
+export default function eventModal (
+  state={
+    eventIsSelected: false,
+    idLan: null,
+    titleLan: null,
+    author: null,
+    description: null,
+    maxPeople : null,
+    startDate: null,
+    endDate: null ,
+    address: null,
+    minAge: null,
+    maxAge: null,
+    smoker: null
+  }, action
+){
 
   if(action.type==='openEventPopup'){
     return { eventIsSelected: true,

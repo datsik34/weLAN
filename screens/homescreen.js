@@ -61,26 +61,26 @@ class HomeScreen extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     _login: function(value) {
-      this.goToLogin();
-      // fetch('https://welan-server.herokuapp.com/login', {
-      //   method: 'POST',
-      //   headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      //   body: `email=${value.email}&password=${value.pwd}`
-      // })
-      // .then(response => response.json())
-      // .then(data => {
-      //   if (data.success) {
-      //     dispatch({
-      //       type: 'login',
-      //       user: data.user
-      //     });
-      //     this.goToLogin();
-      //   } else {
-      //     throw new Error("can't loggin")
-      //   }
-      // }).catch(e => {
-      //   console.log(e);
-      // });
+      // this.goToLogin();
+      fetch('https://welan-server.herokuapp.com/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `email=${value.email}&password=${value.pwd}`
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          dispatch({
+            type: 'login',
+            user: data.user
+          });
+          this.goToLogin();
+        } else {
+          throw new Error("can't loggin")
+        }
+      }).catch(e => {
+        console.log(e);
+      });
     },
     _signup : function(value) {
       fetch('https://welan-server.herokuapp.com/signup', {
