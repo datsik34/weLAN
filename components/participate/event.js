@@ -11,7 +11,7 @@ class Event extends React.Component {
     fetch('https://welan-server.herokuapp.com/event/participate', {
        method: 'POST',
        headers: {'Content-Type':'application/x-www-form-urlencoded'},
-       body: '_id='+this.props.idLan+'&user_id=5b0d7f22c57fbb052c61f807'
+       body: '_id='+this.props.idLan+'&user_id=5b0c1f5e43a3b751bc2d727e'
     })
     .then( response => response.json() )
     .then( data => {
@@ -22,7 +22,7 @@ class Event extends React.Component {
         }
 
     })
-    .then( error => console.log('Request failed', error) )
+    .catch( error => console.log('Request failed', error) )
   }
 
   render(){

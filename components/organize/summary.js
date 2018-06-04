@@ -26,7 +26,54 @@ export default class SummaryComponent extends React.Component {
   _screenShot = () => this.props.navigation.navigate('Summary')
 
   //Navigation
-  _goToProfile = () => this.props.navigation.navigate('Profile');
+  _goToProfile = () => {
+    this.props.navigation.navigate('Profile');
+    // fetch('https://welan-server.herokuapp.com/event/organize', {
+    //   method: 'POST',
+    //   headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    //   body: 'author.id="5b0c1f5e43a3b751bc2d727e"&location="33 rue rené leynaud, 69003 Lyon"&dates.start=1528214400000&&dates.end=1528250400000&info.participants.quantity.max=5'
+    // })
+    // .then( response => response.json())
+    // .then(data => {console.log(data)})
+    // .catch(err => {console.log(err)})
+    //
+    //
+    // {
+    //   "author": {
+    //     "id": "5b0c1f5e43a3b751bc2d727e",
+    //     "username": "test",
+    //     "email": "test",
+    //     "phone": "0812345678"
+    //   },
+    //   "platforms": "PC",
+    //   "games": ["Counter Strike: Global Offensive"],
+    //   "dates": {
+    //     "start": 1528214400000,
+    //     "end": 1528250400000
+    //   },
+    //   "location": '33 rue rené leynaud, 69003 Lyon',
+    //   "info": {
+    //     "event_name": "LAN A DELRAY",
+    //     "description": "Salut ! Je propose une petite LAN CS:GO chez moi. Ramenez votre matos !",
+    //     "participants": {
+    //       "quantity": {
+    //         "max": 5
+    //       }
+    //     },
+    //     "age": {
+    //       "min": 13,
+    //       "max": 65
+    //     },
+    //     "skill": 0,
+    //     "smoking": false
+    //   }
+    // }
+
+  }
+
+
+
+
   _goBack = () => this.props.navigation.navigate('Options');
 
   render(){
