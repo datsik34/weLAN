@@ -2,22 +2,6 @@ import React from 'react';
 import {StyleSheet, View, Text, ScrollView, Image } from 'react-native';
 import { Input, Button, Divider, Icon } from 'react-native-elements';
 
-// DONNÉES EN DUR, A RETIRER\\
-// let events = [
-//   {
-//     info: {event_name: 'LAN LoL ce Weekend!',participants: {quantity: {current: 3,max: 5}}},
-//     location: '124 rue de la République, 69001 Lyon',dates: {start: '12-06-18 - 18h00',end: '14-06-18 - 12h00',}
-//   },
-//   {
-//     info: {event_name: 'CS:GO/Dota2',participants: {quantity: {current: 2,max: 10}}},
-//     location: '40 rue Charlemagne, 69003 Lyon',dates: {start: '15-06-18 - 20h00',end: '16-06-18 - 20h00',}
-//   },
-//   {
-//     info: {event_name: 'FORNITE: PRO ONLY',participants: {quantity: {current: 4,max: 5}}},
-//     location: '33 rue René Leynaud, 69001 Lyon',dates: {start: '30-07-18 - 20h00',end: '31-07-18 - 20h00',}
-//   }
-// ]
-
 export default class ProfileEvent extends React.Component {
 
   constructor(){
@@ -26,6 +10,7 @@ export default class ProfileEvent extends React.Component {
   }
 
   componentDidMount(){
+    console.log('Je passe DidMount');
     let array = ['start', 'end'];
     fetch('https://welan-server.herokuapp.com/profile', {
       method: 'POST',
@@ -34,8 +19,9 @@ export default class ProfileEvent extends React.Component {
     })
     .then( response => response.json())
     .then( data => {
+      console.log(data);
       if (data.success) {
-        data.eventList.map( (e, i) => {
+        data.eventList.map( (e) => {
         let elements = {
           start: null,
           end: null
@@ -49,11 +35,43 @@ export default class ProfileEvent extends React.Component {
         this.setState({ events: data.eventList })
       }
     })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
+  componentWillUpdate(){
+    let array = ['start', 'end'];
+    fetch('https://welan-server.herokuapp.com/profile', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: '_id=5b0c1f5e43a3b751bc2d727e'
+    })
+    .then( response => response.json())
+    .then( data => {
+      console.log(data);
+      if (data.success) {
+        data.eventList.map( (e) => {
+        let elements = {
+          start: null,
+          end: null
+        }
+        for (let el of array) {
+          elements[el] = JSON.stringify(e.dates[el]).slice(1, -1).split(/"|-|T|:/);
+          elements[el] = `${elements[el][2]}.${elements[el][1]}.${elements[el][0]} - ${elements[el][3]}h${elements[el][4]}`;
+        }
+        e.dates = elements;
+      })
+        this.setState({ events: data.eventList })
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
 
   render() {
-    if (this.state.events != []) {
+    if (this.state.events) {
       var myEventsCard = this.state.events.map( (e, i) => {
         return(
           <View key={i} style={styles.cardEvent}>
@@ -75,7 +93,7 @@ export default class ProfileEvent extends React.Component {
               <View style={styles.align}>
                 <Icon name='account-box' color='#008b6b'/>
                 <Text style={styles.cardTxt}>
-                  {e.info.participants.quantity.current} / {e.info.participants.quantity.max}
+                  {e.info.participants.members.length} / {e.info.participants.quantity.max}
                 </Text>
               </View>
             </View>
