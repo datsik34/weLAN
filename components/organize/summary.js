@@ -36,8 +36,8 @@ export default class SummaryComponent extends React.Component {
         <ScrollView>
 
           <View style={styles.containerContent}>
-            <Text style={styles.titleLan}>Nom de la Lan</Text>
-            <Text style={styles.descLan}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus finibus, turpis sed commodo eleifend, massa nisl scelerisque dui, quis vestibulum diam lacus nec libero.</Text>
+            <Text style={styles.titleLan}>LAN A DELRAY</Text>
+            <Text style={styles.descLan}>Salut ! Je propose une petite LAN CS:GO chez moi. Ramenez votre matos !</Text>
 
             <View style={styles.recapLan}>
               <Text style={styles.titleRecapLan}>Récapitulatif</Text>
@@ -45,31 +45,32 @@ export default class SummaryComponent extends React.Component {
 
               <View style={styles.infosLanContainer}>
                 <Icon name='account-box' color='#008b6b' />
-                <Text style={styles.infosLan}>12 rue de la paix 69000 LYON</Text>
+                <Text style={styles.infosLan}>33 rue rené leynaud, 69003 Lyon</Text>
               </View>
               <Divider style={styles.dividerRecap} />
 
               <View style={styles.infosLanContainer}>
-                <Icon name='date-range' color='#008b6b' />
-                <Text style={styles.infosLan}>18 - 30 ans</Text>
+
+                <Icon name='cake' color='#008b6b' />
+                <Text style={styles.infosLan}>13 - 30 ans</Text>
               </View>
               <Divider style={styles.dividerRecap} />
 
               <View style={styles.infosLanContainer}>
                 <Icon name='place' color='#008b6b' />
-                <Text style={styles.infosLan}>6 Pers. max</Text>
+                <Text style={styles.infosLan}>5 Pers. max</Text>
               </View>
               <Divider style={styles.dividerRecap} />
 
               <View style={styles.infosLanContainer}>
-                <Icon name='cake' color='#008b6b' />
-                <Text style={styles.infosLan}>10.08.12  10h</Text>
+                <Icon name='date-range' color='#008b6b' />
+                <Text style={styles.infosLan}>Du 05/06/18 - 18h  au  06/06/18 4h00</Text>
               </View>
               <Divider style={styles.dividerRecap} />
 
               <View style={styles.infosLanContainer}>
                 <Icon name='smoking-rooms' color='#008b6b' />
-                <Text style={styles.infosLan}>Non Fumeurs</Text>
+                <Text style={styles.infosLan}>Non Fumeur</Text>
               </View>
               <Divider style={styles.dividerRecap} />
             </View>
