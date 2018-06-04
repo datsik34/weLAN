@@ -6,28 +6,23 @@ import { connect } from 'react-redux';
 class Event extends React.Component {
 
   _participeEvent = () => {
-
     // Ajoute un nouveau participant à la LAN selectionnéelse
     //  ATTENTION  -  PENSER À CHANGER LE user_id
-    // fetch('https://welan-server.herokuapp.com/event/participate', {
-    //    method: 'POST',
-    //    headers: {'Content-Type':'application/x-www-form-urlencoded'},
-    //    body: '_id='+this.props.idLan+'&user_id=5b0d7f22c57fbb052c61f807'
-    // })
-    // .then( response => response.json() )
-    // .then( data => {
-    //   console.log(data.success)
-    //
-    //   if( data.success ) {
-    //
-    //   }
-    //
-    // })
-    // .then( error => console.log('Request failed', error) )
+    fetch('https://welan-server.herokuapp.com/event/participate', {
+       method: 'POST',
+       headers: {'Content-Type':'application/x-www-form-urlencoded'},
+       body: '_id='+this.props.idLan+'&user_id=5b0d7f22c57fbb052c61f807'
+    })
+    .then( response => response.json() )
+    .then( data => {
+      console.log(data.success)
 
+      if( data.success ) {
+          this.props.addEvent()
+        }
 
-    // this.props.navigation.navigate('Profile');
-
+    })
+    .then( error => console.log('Request failed', error) )
   }
 
   render(){
@@ -112,6 +107,11 @@ function mapDispatshToProps(dispatch){
   return{
     onClickCloseEvent: function(){
       dispatch( {type: 'closeEventPopup'} );
+    },
+    addEvent: function(){
+      dispatch({
+        type: 'eventIsAdded'
+      })
     }
   }
 };
