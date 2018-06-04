@@ -30,7 +30,7 @@ export default function eventModal (
       smoker: action.smoker
     };
 
-  } else if (action.type==='closeEventPopup'){
+  } else if (action.type==='closeEventPopup' || action.type==='eventIsAdded'){
     return { eventIsSelected: false,
       idLan: null,
       titleLan: null,
