@@ -16,16 +16,16 @@ export default class PlatformFilter extends React.Component {
 
   render(){
     return(
-      <View style={Styles.plateformContainer}>
+      <View style={styles.plateformContainer}>
         <View>
-          <Text style={Styles.namePlateform}>{this.props.name}</Text>
-          <Text style={Styles.infosPlateform}>Liste des LAN pour {this.props.name}</Text>
+          <Text style={styles.namePlateform}>{this.props.name}</Text>
+          <Text style={styles.infosPlateform}>Liste des LAN pour {this.props.name}</Text>
         </View>
         <CheckBox
           iconRight
           checked={this.state.platformSelected}
           checkedColor='#008b6b'
-          containerStyle={{backgroundColor: 'transparent', borderWidth: 0, padding: 0}}
+          containerStyle={styles.checkboxStyle}
           onPress={this._isPlatformSelected}
         />
       </View>
@@ -33,7 +33,7 @@ export default class PlatformFilter extends React.Component {
   }
 }
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
   plateformContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -50,4 +50,9 @@ const Styles = StyleSheet.create({
     fontSize: 13,
     color: '#ffffff'
   },
+  checkboxStyle: {
+    backgroundColor: 'transparent',
+    borderWidth: 0,
+    padding: 0
+  }
 })

@@ -27,15 +27,13 @@ export default class OptionsComponent extends React.Component {
       <View style={styles.container}>
         <ScrollView>
           <View style={{ padding: 20 }}>
-
             <Text style={styles.title}>NOM DE LA LAN</Text>
             <Input
               placeholder='Entre le nom de ta LAN'
-              inputContainerStyle={{ backgroundColor:'#25323f', borderColor: '#25323f', borderRadius: 5 }}
-              inputStyle={{ color:'#ffffff', fontSize: 16 }}
+              inputContainerStyle={styles.inputContStyle}
+              inputStyle={styles.inputStyle}
               containerStyle={{width:'100%'}}
             />
-
             <Text style={styles.title}>DESCRIPTION</Text>
             <TextInput
               placeholder='Entre une description de ta LAN'
@@ -44,7 +42,6 @@ export default class OptionsComponent extends React.Component {
               underlineColorAndroid='rgba(0,0,0,0)'
               style={styles.txtInputDesc}
             />
-
             <Text style={styles.title}>NOMBRE DE PARTICIPANTS :</Text>
             <TextInput
               placeholder='0'
@@ -53,7 +50,6 @@ export default class OptionsComponent extends React.Component {
               underlineColorAndroid='rgba(0,0,0,0)'
               style={styles.txtInputNbParticipant}
             />
-
             <Text style={styles.title}>TRANCHE D'AGE :</Text>
             <View style={styles.ageContainer}>
               <View style={styles.ageMinContainer}>
@@ -61,8 +57,8 @@ export default class OptionsComponent extends React.Component {
                 <Input
                   placeholder='13'
                   keyboardType='numeric'
-                  inputContainerStyle={{ backgroundColor:'#25323f', borderColor: '#25323f', borderRadius: 5 }}
-                  inputStyle={{ color:'#ffffff', fontSize: 16 }}
+                  inputContainerStyle={styles.inputContStyle}
+                  inputStyle={styles.inputStyle}
                   containerStyle={{width:40}}
                 />
               </View>
@@ -71,26 +67,23 @@ export default class OptionsComponent extends React.Component {
                 <Input
                   placeholder='30'
                   keyboardType='numeric'
-                  inputContainerStyle={{ backgroundColor:'#25323f', borderColor: '#25323f', borderRadius: 5 }}
-                  inputStyle={{ color:'#ffffff', fontSize: 16 }}
+                  inputContainerStyle={styles.inputContStyle}
+                  inputStyle={styles.inputStyle}
                   containerStyle={{width:40, padding: 0, margin: 0}}
                 />
               </View>
             </View>
-
             <Text style={styles.title}>TRANCHE D'AGE :</Text>
             <CheckBox
               iconRight
               title='Fumeurs'
               checked={this.state.smoke}
               checkedColor='#008b6b'
-              containerStyle={{backgroundColor: 'transparent', borderWidth: 0, padding: 0}}
+              containerStyle={styles.checkboxContStyle}
               onPress={this._smokeIsAllowed}
             />
-
           </View>
         </ScrollView>
-
         <View style={styles.contBtn}>
           <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGreen} titleStyle={styles.btnStyle} onPress={this._goToSummary} title='SUIVANT'/>
           <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGrey} titleStyle={styles.btnStyle} onPress={this._goBack} title='RETOUR'/>
@@ -178,5 +171,19 @@ const styles = StyleSheet.create({
   },
   btnContStyle: {
     width: '50%'
+  },
+  checkboxContStyle: {
+    backgroundColor: 'transparent',
+    borderWidth: 0,
+    padding: 0
+  },
+  inputContStyle: {
+    backgroundColor:'#25323f',
+    borderColor: '#25323f',
+    borderRadius: 5
+  },
+  inputStyle: {
+    color:'#ffffff',
+    fontSize: 16
   }
 })

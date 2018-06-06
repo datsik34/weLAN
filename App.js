@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {Provider} from 'react-redux';
-import {createStore, combineReducers}  from 'redux';
-import {Font} from 'expo';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers }  from 'redux';
+import { Font } from 'expo';
 
 // N A V I G A T I O N
 import RootNavigation from './navigation/rootnavigation';
@@ -16,8 +16,7 @@ var globalReducers = combineReducers({ filter, eventModal, form: formReducer , l
 const store = createStore(globalReducers);
 
 export default class App extends React.Component {
-
-  componentDidMount() {
+  componentDidMount(){
       Font.loadAsync({
         'Teko-Light': require('./assets/fonts/Teko-Light.ttf'),
         'Teko-Bold': require('./assets/fonts/Teko-Bold.ttf'),

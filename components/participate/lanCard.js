@@ -14,7 +14,6 @@ class LanCard extends React.Component {
 
   componentDidMount(){
     let array = ['start', 'end'];
-
     fetch('https://welan-server.herokuapp.com/event/locate')
     .then( response => response.json() )
     .then ( data => {
@@ -31,33 +30,30 @@ class LanCard extends React.Component {
         e.dates = elements;
       })
       // fin
-
       this.setState({ event: data })
     });
   }
 
   render() {
-
       if( this.state.event.availableEvent ){
       event = this.state.event.availableEvent;
-
         var eventCard = this.state.event.availableEvent.map((e, i) => {
           return(
-            <TouchableOpacity key={i} style={Styles.cardContainer} onPress={(indice) => this.props.onClickOpenEvent(i)}>
-              <View style={Styles.imgLanContainer}>
-                <Image style={Styles.imgLan} source={require('../../assets/images/games/wallpaper/test.jpg')}/>
+            <TouchableOpacity key={i} style={styles.cardContainer} onPress={(indice) => this.props.onClickOpenEvent(i)}>
+              <View style={styles.imgLanContainer}>
+                <Image style={styles.imgLan} source={require('../../assets/images/games/wallpaper/test.jpg')}/>
               </View>
-              <View style={Styles.descContainer}>
-                <Text style={Styles.authorLan}>{e.author.username} ORGANISE LA LAN </Text>
-                <Text style={Styles.titleLan}>{e.info.event_name}</Text>
-                <Text style={Styles.descLan}>{e.info.description}</Text>
-                <View style={Styles.moreInfosLanContainer}>
+              <View style={styles.descContainer}>
+                <Text style={styles.authorLan}>{e.author.username} ORGANISE LA LAN </Text>
+                <Text style={styles.titleLan}>{e.info.event_name}</Text>
+                <Text style={styles.descLan}>{e.info.description}</Text>
+                <View style={styles.moreInfosLanContainer}>
                   <Icon name='account-box' color='#008b6b' iconStyle={{fontSize: 16}}/>
-                  <Text style={Styles.moreInfosLan}>{e.info.participants.quantity.max} PERS. MAX</Text>
+                  <Text style={styles.moreInfosLan}>{e.info.participants.quantity.max} PERS. MAX</Text>
                 </View>
-                <View style={Styles.moreInfosLanContainer}>
+                <View style={styles.moreInfosLanContainer}>
                   <Icon name='date-range' color='#008b6b' iconStyle={{fontSize: 16}}/>
-                  <Text style={Styles.moreInfosLan}>{e.dates.start}  /  {e.dates.end}</Text>
+                  <Text style={styles.moreInfosLan}>{e.dates.start}  /  {e.dates.end}</Text>
                 </View>
               </View>
             </TouchableOpacity>
@@ -68,14 +64,13 @@ class LanCard extends React.Component {
 
     return(
     <ScrollView horizontal={true}>
-      <View style={Styles.listCardContainer}>
+      <View style={styles.listCardContainer}>
         {eventCard}
       </View>
     </ScrollView>
     )
   }
 };
-
 
 function mapDispatchToProps(dispatch){
   return{
@@ -99,8 +94,7 @@ function mapDispatchToProps(dispatch){
 }
 export default connect(null, mapDispatchToProps)(LanCard);
 
-
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
   listCardContainer: {
     flexDirection: 'row',
   },

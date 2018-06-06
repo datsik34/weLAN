@@ -71,50 +71,38 @@ export default class SummaryComponent extends React.Component {
 
   }
 
-
-
-
   _goBack = () => this.props.navigation.navigate('Options');
 
   render(){
     return(
       <View style={styles.container}>
-
         <ScrollView>
-
           <View style={styles.containerContent}>
             <Text style={styles.titleLan}>LAN A DELRAY</Text>
             <Text style={styles.descLan}>Salut ! Je propose une petite LAN CS:GO chez moi. Ramenez votre matos !</Text>
-
             <View style={styles.recapLan}>
               <Text style={styles.titleRecapLan}>Récapitulatif</Text>
               <Divider style={styles.dividerRecap} />
-
               <View style={styles.infosLanContainer}>
                 <Icon name='account-box' color='#008b6b' />
                 <Text style={styles.infosLan}>33 rue rené leynaud, 69003 Lyon</Text>
               </View>
               <Divider style={styles.dividerRecap} />
-
               <View style={styles.infosLanContainer}>
-
                 <Icon name='cake' color='#008b6b' />
                 <Text style={styles.infosLan}>13 - 30 ans</Text>
               </View>
               <Divider style={styles.dividerRecap} />
-
               <View style={styles.infosLanContainer}>
                 <Icon name='place' color='#008b6b' />
                 <Text style={styles.infosLan}>5 Pers. max</Text>
               </View>
               <Divider style={styles.dividerRecap} />
-
               <View style={styles.infosLanContainer}>
                 <Icon name='date-range' color='#008b6b' />
                 <Text style={styles.infosLan}>Du 05/06/18 - 18h  au  06/06/18 4h00</Text>
               </View>
               <Divider style={styles.dividerRecap} />
-
               <View style={styles.infosLanContainer}>
                 <Icon name='smoking-rooms' color='#008b6b' />
                 <Text style={styles.infosLan}>Non Fumeur</Text>
@@ -122,9 +110,7 @@ export default class SummaryComponent extends React.Component {
               <Divider style={styles.dividerRecap} />
             </View>
         </View>
-
         </ScrollView>
-
         <View style={styles.contBtn}>
           <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGreen} titleStyle={styles.btnStyle} onPress={this._goToProfile} title='VALIDER'/>
           <Button containerStyle={styles.btnContStyle} buttonStyle={styles.btnColorGrey} titleStyle={styles.btnStyle} onPress={this._goBack} title='RETOUR'/>
