@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { reduxForm, Field } from "redux-form";
 
-function textInputNickname(props) {
+textInputNickname = (props) => {
   const { input } = props;
   return (
       <Input
@@ -17,7 +17,7 @@ function textInputNickname(props) {
   );
 }
 
-function textInputEmail(props) {
+textInputEmail = (props) => {
   const { input } = props;
   return (
       <Input
@@ -31,7 +31,7 @@ function textInputEmail(props) {
   );
 }
 
-function textInputPwd(props) {
+textInputPwd = (props) => {
   const { input } = props;
   return (
       <Input
@@ -42,12 +42,11 @@ function textInputPwd(props) {
         placeholderTextColor={'white'}
         placeholder='PASSWORD'
         secureTextEntry={true}
-
       />
   );
 }
 
-function textInputDoB(props) {
+textInputDoB = (props) => {
   const { input } = props;
   return (
       <Input

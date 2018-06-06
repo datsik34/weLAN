@@ -7,14 +7,6 @@ import { connect } from 'react-redux';
 import Login from '../components/home/login.js'
 import SignUp from '../components/home/signup.js'
 
-function renderIf(condition, content) {
-  if (condition) {
-    return content;
-  } else {
-    return null;
-  }
-}
-
 class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
@@ -50,37 +42,40 @@ class HomeScreen extends React.Component {
             <Button titleStyle={styles.btnTitle} onPress={this._toggleLogin} clear={true} title='Login'/>
             <Button titleStyle={styles.btnTitle} onPress={this._toggleSignUp} clear={true} title='Sign Up'/>
           </View>
-          {renderIf(this.state.showingLogin, <Login onSubmit={(value) => this.props._login.bind(this)(value)}/>)}
-          {renderIf(!this.state.showingLogin, <SignUp onSubmit={(value) => this.props._signup.bind(this)(value)}/>)}
+          {
+            this.state.showingLogin
+            ? <Login onSubmit={(value) => this.props._login.bind(this)(value)}/>
+            : <SignUp onSubmit={(value) => this.props._signup.bind(this)(value)}/>
+          }
         </View>
       </View>
     )
   }
 }
 
-function mapDispatchToProps(dispatch) {
+mapDispatchToProps = (dispatch) => {
   return {
     _login: function(value) {
-      // this.goToLogin();
-      fetch('https://welan-server.herokuapp.com/login', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: `email=${value.email}&password=${value.pwd}`
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          dispatch({
-            type: 'login',
-            user: data.user
-          });
-          this.goToLogin();
-        } else {
-          throw new Error("can't loggin")
-        }
-      }).catch(e => {
-        console.log(e);
-      });
+      this.goToLogin(); //!\ UNCOMMENT IF NEEDED TO GET REAL LOGGIN /!\  <---- DEL THIS LINE  /!\
+      // fetch('https://welan-server.herokuapp.com/login', {
+      //   method: 'POST',
+      //   headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      //   body: `email=${value.email}&password=${value.pwd}`
+      // })
+      // .then(response => response.json())
+      // .then(data => {
+      //   if (data.success) {
+      //     dispatch({
+      //       type: 'login',
+      //       user: data.user
+      //     });
+      //     this.goToLogin();
+      //   } else {
+      //     throw new Error("can't loggin")
+      //   }
+      // }).catch(e => {
+      //   console.log(e);
+      // });
     },
     _signup : function(value) {
       fetch('https://welan-server.herokuapp.com/signup', {

@@ -11,7 +11,7 @@ import Event from './../components/participate/event.js';
 class ParticipateScreen extends React.Component {
   constructor(){
     super();
-    this.state = { filterIsVisible: false }
+    this.state = {filterIsVisible: false}
   }
 
   static navigationOptions = {
@@ -22,35 +22,30 @@ class ParticipateScreen extends React.Component {
 
   render() {
     return (
-      <View style={Styles.container}>
-          <View style={Styles.mapContainer}>
+      <View style={styles.container}>
+          <View style={styles.mapContainer}>
             <MapView
               provider='google'
-              style={Styles.map}
-              region={{
-                latitude: 45.7583991,
-                longitude: 4.8302986,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-              }}
+              style={styles.map}
+              region={MapRegion}
               customMapStyle={GoogleMapsStyle}
             />
-            <View style={Styles.hearderMapContainer}>
-              <Image style={Styles.logo} source={require('../assets/images/resources/logo.svg.png')}/>
-              <Avatar size="medium" rounded title="MT" onPress={this._goBack} containerStyle={Styles.avatarUser}/>
+            <View style={styles.hearderMapContainer}>
+              <Image style={styles.logo} source={require('../assets/images/resources/logo.svg.png')}/>
+              <Avatar size="medium" rounded title="MT" onPress={this._goBack} containerStyle={styles.avatarUser}/>
             </View>
-            <View style={Styles.btnFilterContainer}>
+            <View style={styles.btnFilterContainer}>
               <Button
                 title='Filtres'
-                buttonStyle={Styles.btnFilterStyle}
-                titleStyle={Styles.btnFilterTitleStyle}
+                buttonStyle={styles.btnFilterStyle}
+                titleStyle={styles.btnFilterTitleStyle}
                 iconRight
                 icon={<Icon name='search' size={15} color='#172533'/>}
                 onPress={this.props.onOpenFilterClick}
               />
             </View>
           </View>
-        <View style={Styles.lanListContainer}>
+        <View style={styles.lanListContainer}>
           <LanCard/>
         </View>
         <Event/>
@@ -60,16 +55,15 @@ class ParticipateScreen extends React.Component {
   }
 }
 
-function mapDispatshToProps(dispatch) {
-  return{
-    onOpenFilterClick: function(){
-      dispatch( {type: 'openFilter'} );
-    }
+mapDispatshToProps = (dispatch) => {
+  return {
+    onOpenFilterClick: () => { dispatch({type: 'openFilter'})}
   }
 }
+
 export default connect(null, mapDispatshToProps)(ParticipateScreen);
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -127,6 +121,12 @@ const Styles = StyleSheet.create({
   }
 });
 
+const MapRegion = {
+  latitude: 45.7583991,
+  longitude: 4.8302986,
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421,
+}
 const GoogleMapsStyle = [
   { "elementType": "geometry", "stylers": [{"color": "#242f3e"}] },
   { "elementType": "labels.text.fill", "stylers": [{ "color": "#128a6b" }]},

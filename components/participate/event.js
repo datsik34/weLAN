@@ -4,7 +4,6 @@ import { Overlay, Icon, Button, Modal } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 class Event extends React.Component {
-
   _participeEvent = () => {
     // Ajoute un nouveau participant à la LAN selectionnéelse
     //  ATTENTION  -  PENSER À CHANGER LE user_id
@@ -16,17 +15,14 @@ class Event extends React.Component {
     .then( response => response.json() )
     .then( data => {
       console.log(data.success)
-
       if( data.success ) {
           this.props.addEvent()
         }
-
     })
     .catch( error => console.log('Request failed', error) )
   }
 
   render(){
-
     var smokerInfo;
     if(this.props.smoker){
       smokerInfo = 'Fumeurs acceptés'
@@ -36,65 +32,65 @@ class Event extends React.Component {
 
     return(
       <Overlay isVisible={this.props.eventIsSelected}
-        overlayStyle={{ padding: 20 }}
+        overlayStyle={styles.overlayStyling}
         windowBackgroundColor='rgba(24,38,51,0.80)'
         width='90%'
         height='85%'
         borderRadius={5}
         >
-        <View style={Styles.headerModal}>
+        <View style={styles.headerModal}>
           <Icon name='close' size={20} color='black' width={window.height} onPress={this.props.onClickCloseEvent}/>
         </View>
         <ScrollView>
-          <View style={Styles.imgLanContainer}>
-            <Image style={Styles.imgLan} source={require('../../assets/images/games/wallpaper/test.jpg')}/>
+          <View style={styles.imgLanContainer}>
+            <Image style={styles.imgLan} source={require('../../assets/images/games/wallpaper/test.jpg')}/>
           </View>
-          <Text style={Styles.subTitle}>DÉCOUVREZ LA LAN ...</Text>
-          <Text style={Styles.titleLan}>{this.props.titleLan}</Text>
-          <Text style={Styles.descLan}>{this.props.description}</Text>
-          <View style={Styles.infoLanContainer}>
-            <View style={Styles.infoLan}>
+          <Text style={styles.subTitle}>DÉCOUVREZ LA LAN ...</Text>
+          <Text style={styles.titleLan}>{this.props.titleLan}</Text>
+          <Text style={styles.descLan}>{this.props.description}</Text>
+          <View style={styles.infoLanContainer}>
+            <View style={styles.infoLan}>
               <View>
                 <Icon name='face' color='#008b6b'/>
               </View>
-              <Text style={Styles.moreInfosLan}>Organisée par : {this.props.author}</Text>
+              <Text style={styles.moreInfosLan}>Organisée par : {this.props.author}</Text>
             </View>
-            <View style={Styles.infoLan}>
+            <View style={styles.infoLan}>
               <View>
                 <Icon name='account-box' color='#008b6b' />
               </View>
-              <Text style={Styles.moreInfosLan}>{this.props.maxPeople} pers. max</Text>
+              <Text style={styles.moreInfosLan}>{this.props.maxPeople} pers. max</Text>
             </View>
-            <View style={Styles.infoLan}>
+            <View style={styles.infoLan}>
               <View>
                 <Icon name='date-range' color='#008b6b' />
               </View>
-              <Text style={Styles.moreInfosLan}>{this.props.startDate}  /  {this.props.endDate}</Text>
+              <Text style={styles.moreInfosLan}>{this.props.startDate}  /  {this.props.endDate}</Text>
             </View>
-            <View style={Styles.infoLan}>
+            <View style={styles.infoLan}>
               <View>
                 <Icon name='place' color='#008b6b' />
               </View>
-              <Text style={Styles.moreInfosLan}>{this.props.address}</Text>
+              <Text style={styles.moreInfosLan}>{this.props.address}</Text>
             </View>
-            <View style={Styles.infoLan}>
+            <View style={styles.infoLan}>
               <View>
                 <Icon name='cake' color='#008b6b' />
               </View>
-              <Text style={Styles.moreInfosLan}>{this.props.minAge} - {this.props.maxAge} ans</Text>
+              <Text style={styles.moreInfosLan}>{this.props.minAge} - {this.props.maxAge} ans</Text>
             </View>
-            <View style={Styles.infoLan}>
+            <View style={styles.infoLan}>
               <View>
                 <Icon name='smoking-rooms' color='#008b6b' />
               </View>
-              <Text style={Styles.moreInfosLan}>{smokerInfo}</Text>
+              <Text style={styles.moreInfosLan}>{smokerInfo}</Text>
             </View>
           </View>
           <Button
             title='Participer'
-            titleStyle={{ fontFamily: 'Montserrat-Bold', fontSize: 14, color: '#ffffff'}}
-            buttonStyle={{ backgroundColor: '#21c065', borderRadius: 5 }}
-            containerStyle={{ marginTop: 20 }}
+            titleStyle={styles.btnTitleStyle}
+            buttonStyle={styles.btnStyle}
+            containerStyle={styles.btnContStyle}
             onPress={this._participeEvent}
           />
         </ScrollView>
@@ -135,7 +131,7 @@ function mapStateToProps(state){
 
 export default connect(mapStateToProps, mapDispatshToProps)(Event);
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
   headerModal: {
     flexDirection: 'row'
   },
@@ -176,5 +172,20 @@ const Styles = StyleSheet.create({
     marginLeft: 10,
     fontFamily: 'Teko-Light',
     fontSize: 15,
+  },
+  overlayStyling: {
+    padding: 20
+  },
+  btnTitleStyle: {
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 14,
+    color: '#ffffff'
+  },
+  btnStyle: {
+    backgroundColor: '#21c065',
+    borderRadius: 5
+  },
+  btnContStyle: {
+    marginTop: 20
   }
 })

@@ -22,21 +22,21 @@ class Filter extends React.Component {
 
     if(this.props.filter){
       return(
-        <View style={Styles.filterContainer}>
-          <View style={Styles.headerFilter}>
+        <View style={styles.filterContainer}>
+          <View style={styles.headerFilter}>
             <Icon name='close' size={30} color='#ffffff' onPress={this.props.onCloseFilterClick}/>
-            <Text style={Styles.CleanFilter}>Effacer</Text>
+            <Text style={styles.CleanFilter}>Effacer</Text>
           </View>
           <ScrollView>
             <View>
-              <Text style={Styles.titlePart}>Quelle Plateforme ?</Text>
+              <Text style={styles.titlePart}>Quelle Plateforme ?</Text>
                 {plateformChoice}
-              <Divider style={Styles.divider} />
-              <Text style={Styles.titlePart}>Quel jeu ?</Text>
-              <View style={Styles.badgeContainer}>
+              <Divider style={styles.divider} />
+              <Text style={styles.titlePart}>Quel jeu ?</Text>
+              <View style={styles.badgeContainer}>
                 {gameChoice}
               </View>
-              <Divider style={Styles.divider} />
+              <Divider style={styles.divider} />
             </View>
           </ScrollView>
         </View>
@@ -63,7 +63,7 @@ function mapStateToProps(state){
 
 export default connect(mapStateToProps, mapDispatshToProps)(Filter);
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
   filterContainer: {
     zIndex: 2,
     flex: 1,

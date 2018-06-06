@@ -16,7 +16,8 @@ export default function eventModal (
 ){
 
   if(action.type==='openEventPopup'){
-    return { eventIsSelected: true,
+    return {
+      eventIsSelected: true,
       idLan: action.idLan,
       titleLan: action.titleLan,
       author: action.author,
@@ -31,7 +32,8 @@ export default function eventModal (
     };
 
   } else if (action.type==='closeEventPopup' || action.type==='eventIsAdded'){
-    return { eventIsSelected: false,
+    return {
+      eventIsSelected: false,
       idLan: null,
       titleLan: null,
       author: null,

@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { reduxForm, Field } from "redux-form";
 
-function textInputEmail(props) {
+textInputEmail = (props) => {
   const { input } = props;
   return(
     <Input
@@ -17,7 +17,7 @@ function textInputEmail(props) {
     />
   );
 }
-function textInputPwd(props) {
+textInputPwd = (props) => {
   const { input } = props;
   return(
     <Input
